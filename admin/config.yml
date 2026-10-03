@@ -1,0 +1,23 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "custom_sections"
+    label: "Custom Sections"
+    files:
+      - label: "Sections list"
+        name: "sections_list"
+        file: "content/custom-sections.json"
+        fields:
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Small label above the title (e.g. Case Study)", name: "label", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Body text (separate paragraphs with a blank line)", name: "body", widget: "text" }
