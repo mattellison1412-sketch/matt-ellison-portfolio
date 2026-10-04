@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Netflix Case Study — Matt Ellison</title>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<style>
+  :root{
+    --cream:#fdf8ef;
+    --ink:#1c1a12;
+    --gold:#f0c869;
+    --line:rgba(255,255,255,0.16);
+    --sp:0;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Iowan Old Style','Georgia',serif;
+    color:var(--ink);
+  }
+
+  h1,h2,h3{
+    font-family:'Iowan Old Style','Georgia',serif;
+    font-weight:600;
+    margin:0;
+    text-shadow:0 1px 3px rgba(255,255,255,0.7), 0 0 14px rgba(255,255,255,0.4);
+  }
+
+  p, a, li, span, label, input, textarea, button{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+  }
+
+  p, td, th, .exp-years, .assumption-note{
+    text-shadow:0 1px 2px rgba(255,255,255,0.75), 0 0 10px rgba(255,255,255,0.45);
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  /* ---------- NAV WITH DROPDOWN ---------- */
+  nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:28px;
+    padding:22px 40px;
+    z-index:100;
+    font-size:14px;
+    letter-spacing:0.02em;
+    color:#1c1a12;
+  }
+  nav > a{
+    opacity:0.85;
+    transition:opacity .2s;
+    text-shadow:0 1px 2px rgba(255,255,255,0.8), 0 0 10px rgba(255,255,255,0.5);
+  }
+  nav > a:hover{opacity:1;}
+
+  .nav-dropdown{
+    position:relative;
+    padding:6px 0;
+  }
+  .nav-dropdown-trigger{
+    cursor:default;
+    opacity:0.85;
+    transition:opacity .2s;
+    text-shadow:0 1px 2px rgba(255,255,255,0.8), 0 0 10px rgba(255,255,255,0.5);
+  }
+  .nav-dropdown:hover .nav-dropdown-trigger{opacity:1;}
+
+  .nav-dropdown-menu{
+    position:absolute;
+    top:100%;
+    right:0;
+    margin-top:2px;
+    background:rgba(253,248,239,0.98);
+    border-radius:8px;
+    padding:8px 0;
+    min-width:160px;
+    box-shadow:0 14px 34px rgba(20,18,12,0.28);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-6px);
+    transition:opacity .16s ease, transform .16s ease, visibility .16s;
+  }
+  .nav-dropdown:hover .nav-dropdown-menu{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+  }
+  .nav-dropdown-menu a{
+    display:block;
+    padding:9px 18px;
+    color:#1c1a12;
+    font-size:13.5px;
+    white-space:nowrap;
+    text-shadow:none;
+    opacity:1;
+  }
+  .nav-dropdown-menu a:hover{background:rgba(20,18,12,0.07);}
+
+  /* ---------- FIXED FULL-PAGE MEADOW SCENE ---------- */
+  #scene{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    overflow:hidden;
+    background:#8fc6e8;
+  }
+
+  .sky{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg,
+      #6fb3e0 0%,
+      #9fd0ea 28%,
+      #c9e8d8 52%,
+      #a9d98f 68%,
+      #7ab85e 100%);
+  }
+
+  .sun{
+    position:absolute;
+    top:10%; left:72%;
+    width:130px; height:130px;
+    margin-left:-65px;
+    border-radius:50%;
+    background:radial-gradient(circle at 50% 50%, #fff7d8 0%, #ffe9a0 55%, rgba(255,233,160,0) 75%);
+    box-shadow:0 0 80px 26px rgba(255,233,160,0.4);
+    animation:sunpulse 7s ease-in-out infinite;
+  }
+  @keyframes sunpulse{
+    0%,100%{transform:scale(1); opacity:1;}
+    50%{transform:scale(1.03); opacity:0.94;}
+  }
+
+  .cloud{
+    position:absolute;
+    background:rgba(255,255,255,0.85);
+    border-radius:100px;
+    filter:blur(1px);
+    animation-name:drift;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite;
+  }
+  .cloud::before, .cloud::after{
+    content:"";
+    position:absolute;
+    background:rgba(255,255,255,0.85);
+    border-radius:100px;
+  }
+  .cloud::before{ width:60%; height:140%; top:-50%; left:8%; }
+  .cloud::after{ width:45%; height:120%; top:-40%; right:10%; }
+  @keyframes drift{
+    from{transform:translateX(-20vw);}
+    to{transform:translateX(120vw);}
+  }
+
+  .birds{position:absolute; inset:0; opacity:0.8;}
+  .bird{
+    position:absolute;
+    width:30px; height:12px;
+    animation-name:flyacross;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite;
+  }
+  .bird svg{width:100%; height:100%;}
+  .bird path{stroke:#2a2410; stroke-width:2.2; fill:none; stroke-linecap:round;}
+  @keyframes flyacross{
+    from{transform:translateX(-10vw);}
+    to{transform:translateX(110vw);}
+  }
+
+  .hill{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    width:100%;
+  }
+  .hill-far{height:38%; fill:#8fc47a; opacity:0.9;}
+  .hill-mid{height:26%; fill:#6fae5a;}
+  .hill-near{height:16%; fill:#4f8f42;}
+
+  .tree{
+    position:absolute;
+    bottom:0;
+    transform-origin:bottom center;
+    animation:swayTree ease-in-out infinite;
+  }
+  .tree .trunk{fill:#5a3d26;}
+  .tree .leaves{fill:#3f7a3a;}
+  @keyframes swayTree{
+    0%,100%{transform:rotate(-2deg);}
+    50%{transform:rotate(2deg);}
+  }
+
+  .grass-row{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height:6%;
+  }
+  .blade{
+    position:absolute;
+    bottom:0;
+    width:3px;
+    background:#3f7a3a;
+    transform-origin:bottom center;
+    animation:swayGrass ease-in-out infinite;
+  }
+  @keyframes swayGrass{
+    0%,100%{transform:rotate(-6deg);}
+    50%{transform:rotate(6deg);}
+  }
+
+  .particles{position:absolute; inset:0;}
+  .leaf{
+    position:absolute;
+    width:8px; height:8px;
+    background:#d9a441;
+    border-radius:0 60% 0 60%;
+    animation:fall linear infinite;
+  }
+  @keyframes fall{
+    0%{transform:translateY(-10vh) translateX(0) rotate(0deg); opacity:0;}
+    10%{opacity:0.85;}
+    90%{opacity:0.6;}
+    100%{transform:translateY(110vh) translateX(40px) rotate(360deg); opacity:0;}
+  }
+
+  /* ---------- HERO CONTENT (overlays fixed scene) ---------- */
+  .hero{
+    position:relative;
+    height:100vh;
+    min-height:560px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:0 40px 90px;
+    color:#1c1a12;
+  }
+  .hero-eyebrow{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:14px;
+    letter-spacing:0.03em;
+    opacity:0.95;
+    margin-bottom:14px;
+    text-shadow:0 1px 2px rgba(255,255,255,0.75), 0 0 12px rgba(255,255,255,0.45);
+  }
+  .hero h1{
+    font-size:clamp(40px, 7vw, 84px);
+    line-height:1.02;
+    max-width:14ch;
+  }
+  .hero-sub{
+    margin-top:18px;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:19px;
+    max-width:46ch;
+    opacity:0.97;
+    line-height:1.5;
+    text-shadow:0 1px 2px rgba(255,255,255,0.75), 0 0 12px rgba(255,255,255,0.45);
+  }
+
+  .scroll-cue{
+    position:absolute;
+    bottom:28px; left:40px;
+    z-index:5;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:13px;
+    color:#1c1a12;
+    opacity:0.85;
+    text-shadow:0 1px 2px rgba(255,255,255,0.75), 0 0 12px rgba(255,255,255,0.45);
+  }
+
+  /* ---------- SECTIONS: no panel, text floats on the scene ---------- */
+  section{
+    position:relative;
+    max-width:820px;
+    margin:0 auto;
+    padding:70px 44px;
+  }
+  .section-label{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:14px;
+    color:var(--gold);
+    margin-bottom:10px;
+    text-shadow:0 1px 2px rgba(255,255,255,0.75), 0 0 10px rgba(255,255,255,0.45);
+  }
+  .section-title{
+    font-size:clamp(30px,4.2vw,42px);
+    max-width:20ch;
+    margin-bottom:44px;
+  }
+
+  .exp-row{
+    display:grid;
+    grid-template-columns:130px 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-top:1px solid rgba(20,18,12,0.35);
+  }
+  .exp-row:last-child{border-bottom:1px solid rgba(20,18,12,0.35);}
+  .exp-years{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:14px;
+    color:#2a2718;
+    padding-top:3px;
+  }
+  .exp-row h3{font-size:20px; margin-bottom:6px;}
+  .exp-row p{font-size:17px; line-height:1.6; color:#1c1a12; max-width:60ch;}
+
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:32px;
+  }
+  .skill-card h3{font-size:16px; margin-bottom:8px; text-shadow:0 1px 2px rgba(255,255,255,0.75), 0 0 10px rgba(255,255,255,0.45);}
+  .skill-card p{font-size:16px; color:#1c1a12; line-height:1.55;}
+
+  .project{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    padding:28px 0;
+    border-top:1px solid rgba(20,18,12,0.35);
+  }
+  .project:last-child{border-bottom:1px solid rgba(20,18,12,0.35);}
+  .project h3{font-size:19px; margin-bottom:8px;}
+  .project p{font-size:16.5px; color:#1c1a12; line-height:1.6;}
+  .project a{font-size:13.5px; color:var(--gold); font-family:'Helvetica Neue',Arial,sans-serif;}
+
+  .data-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:28px 0;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:15.5px;
+  }
+  .data-table th{
+    text-align:left;
+    font-size:12px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--gold);
+    padding:10px 14px 10px 0;
+    border-bottom:1px solid rgba(20,18,12,0.4);
+  }
+  .data-table td{
+    padding:11px 14px 11px 0;
+    border-bottom:1px solid rgba(20,18,12,0.2);
+    color:#1c1a12;
+  }
+  .subhead{
+    font-size:21px;
+    margin-top:40px;
+    margin-bottom:14px;
+  }
+  .assumption-note{
+    font-size:14.5px; line-height:1.65; color:#3a3528; max-width:68ch; margin-top:10px; font-family:'Helvetica Neue',Arial,sans-serif;
+  }
+
+  .contact-block{
+    text-align:left;
+  }
+  .contact-email{
+    font-size:clamp(24px,4vw,34px);
+    display:inline-block;
+    margin:18px 0;
+    border-bottom:1px solid var(--ink);
+  }
+  footer{
+    position:relative;
+    padding:30px 44px 50px;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:13px;
+    color:#1c1a12;
+    text-shadow:0 1px 2px rgba(255,255,255,0.75), 0 0 10px rgba(255,255,255,0.45);
+    max-width:820px;
+    margin:0 auto;
+  }
+
+  @media (max-width:680px){
+    .grid-3{grid-template-columns:1fr; gap:26px;}
+    .project{grid-template-columns:1fr;}
+    .exp-row{grid-template-columns:1fr; gap:6px;}
+    nav{gap:18px; padding:18px 20px; font-size:13px;}
+    section{padding:54px 22px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .cloud, .bird, .leaf, .tree, .blade, .sun{animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html#approach">Approach</a>
+  <a href="macro-view.html">Macro View</a>
+  <div class="nav-dropdown">
+    <span class="nav-dropdown-trigger">Case Study</span>
+    <div class="nav-dropdown-menu">
+      <a href="boost-case-study.html">Boost Mobile</a>
+      <a href="apple-case-study.html">Apple</a>
+      <a href="netflix-case-study.html">Netflix</a>
+      <a href="tmobile-case-study.html">T-Mobile</a>
+      <a href="att-case-study.html">AT&T</a>
+    </div>
+  </div>
+  <a href="index.html#experience">Experience</a>
+  <a href="index.html#skills">Skills</a>
+  <a href="index.html#contact">Contact</a>
+</nav>
+
+<div id="scene">
+  <div class="sky"></div>
+  <div class="sun"></div>
+
+  <div class="cloud" style="top:12%; left:10%; width:140px; height:36px; animation-duration:70s;"></div>
+  <div class="cloud" style="top:20%; left:50%; width:100px; height:28px; animation-duration:90s; animation-delay:-30s;"></div>
+  <div class="cloud" style="top:8%; left:30%; width:170px; height:42px; animation-duration:110s; animation-delay:-60s;"></div>
+
+  <div class="birds">
+    <div class="bird" style="top:22%; animation-duration:30s;"><svg viewBox="0 0 30 12"><path d="M0,9 Q7,0 15,8 Q23,0 30,9"/></svg></div>
+    <div class="bird" style="top:26%; animation-duration:36s; animation-delay:-10s;"><svg viewBox="0 0 30 12"><path d="M0,9 Q7,0 15,8 Q23,0 30,9"/></svg></div>
+    <div class="bird" style="top:18%; animation-duration:42s; animation-delay:-22s;"><svg viewBox="0 0 30 12"><path d="M0,9 Q7,0 15,8 Q23,0 30,9"/></svg></div>
+  </div>
+
+  <svg class="hill hill-far" viewBox="0 0 1200 400" preserveAspectRatio="none">
+    <path d="M0,260 C220,190 380,280 620,220 C860,170 1040,260 1200,210 L1200,400 L0,400 Z"/>
+  </svg>
+  <svg class="hill hill-mid" viewBox="0 0 1200 300" preserveAspectRatio="none">
+    <path d="M0,180 C200,110 380,200 620,150 C860,100 1040,190 1200,140 L1200,300 L0,300 Z"/>
+  </svg>
+
+  <svg class="tree" style="left:8%; width:70px; height:140px; animation-duration:5s;" viewBox="0 0 70 140">
+    <rect class="trunk" x="31" y="90" width="8" height="50"/>
+    <circle class="leaves" cx="35" cy="55" r="40"/>
+  </svg>
+  <svg class="tree" style="left:16%; width:46px; height:95px; animation-duration:4.2s; animation-delay:-1.5s;" viewBox="0 0 70 140">
+    <rect class="trunk" x="31" y="90" width="8" height="50"/>
+    <circle class="leaves" cx="35" cy="55" r="40"/>
+  </svg>
+  <svg class="tree" style="right:10%; width:60px; height:120px; animation-duration:4.8s; animation-delay:-2.5s;" viewBox="0 0 70 140">
+    <rect class="trunk" x="31" y="90" width="8" height="50"/>
+    <circle class="leaves" cx="35" cy="55" r="40"/>
+  </svg>
+
+  <svg class="hill hill-near" viewBox="0 0 1200 140" preserveAspectRatio="none">
+    <path d="M0,90 C300,40 520,110 760,70 C960,40 1100,100 1200,70 L1200,140 L0,140 Z"/>
+  </svg>
+
+  <div class="grass-row">
+    <div class="blade" style="left:3%; height:22px; animation-duration:2.2s;"></div>
+    <div class="blade" style="left:6%; height:16px; animation-duration:1.8s; animation-delay:-0.4s;"></div>
+    <div class="blade" style="left:22%; height:20px; animation-duration:2.4s; animation-delay:-0.8s;"></div>
+    <div class="blade" style="left:40%; height:18px; animation-duration:2.0s; animation-delay:-1.2s;"></div>
+    <div class="blade" style="left:58%; height:24px; animation-duration:2.6s; animation-delay:-0.6s;"></div>
+    <div class="blade" style="left:74%; height:17px; animation-duration:1.9s; animation-delay:-1.0s;"></div>
+    <div class="blade" style="left:88%; height:21px; animation-duration:2.3s; animation-delay:-1.6s;"></div>
+    <div class="blade" style="left:95%; height:15px; animation-duration:2.1s; animation-delay:-0.3s;"></div>
+  </div>
+
+  <div class="particles" id="particles"></div>
+</div>
+
+<div style="height:16vh;"></div>
+<div style="max-width:820px; margin:0 auto; padding:0 44px;">
+  <a href="index.html" style="color:#1c1a12; font-family:'Helvetica Neue',Arial,sans-serif; font-size:14px; text-shadow:0 1px 2px rgba(255,255,255,0.75), 0 0 10px rgba(255,255,255,0.45);">← Back to home</a>
+</div>
+<section id="netflix">
+  <div class="section-label">Case Study</div>
+  <h2 class="section-title">Netflix — subscriber economics and the simplest path forward.</h2>
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch;">
+    Q2 2026: revenue of $12.6 billion, up 13% year-over-year, with full-year guidance narrowed to $51.0–51.4 billion (12–14% growth). Ad revenue is on track to roughly double in 2026 to about $3 billion, and management says ads now account for roughly a quarter of incremental revenue growth. Netflix stopped disclosing quarterly subscriber counts and ARM (average revenue per membership) back in Q1 2025, which makes this one the hardest of the four to model cleanly — I want to flag that upfront rather than pretend otherwise.
+  </p>
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;">
+    Without disclosed churn or exact ARM, any CAC/LTV figure here is more speculative than the other three. Using a rough blended ARM estimate around $12–13/month (regional estimates run from ~$17.50 in the U.S./Canada down to ~$7 in Latin America) and an assumed monthly churn in the 2.0–2.5% range common to mature streaming services, modeled average lifetime would run 40–50 months, implying an LTV somewhere in the $350–450 range at a ~35% content-adjusted margin. I'd treat that range as a rough sketch, not a confident number — Netflix's own disclosure gap is the real story here.
+  </p>
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;">
+    Revenue growth read: a clear, gradual deceleration — 18% in Q4 2025, down to 16% in Q1 2026, down to 13% in Q2 2026 — consistent with a maturing subscriber base where pricing and ads are doing more of the growth work than new membership volume.
+  </p>
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;">
+    <strong>Simplest path:</strong> stop optimizing for new subscribers and optimize for hours watched per existing one. Netflix's moat was never subscriber count — it's that once you're in, there's always something queued up. More engagement from the people already paying is a more reliable lever than finding new ones in an increasingly saturated market.
+  </p>
+
+
+  <p class="assumption-note" style="margin-top:26px;">
+    Revenue and guidance figures are sourced from Netflix's Q2 2026 shareholder letter and SEC filings. CAC, LTV, and churn are my own modeled assumptions and should be read as a rough sketch — Netflix no longer discloses subscriber counts or ARM. The "simplest path" framing is my own synthesis, not a statement from Netflix.
+  </p>
+</section>
+
+<footer>© 2026 Matt Ellison</footer>
+
+<script>
+  // drifting leaves, spread across the full page height
+  const field = document.getElementById('particles');
+  for(let i=0;i<35;i++){
+    const l = document.createElement('div');
+    l.className = 'leaf';
+    l.style.left = Math.random()*100+'%';
+    l.style.top = (Math.random()*-100)+'%';
+    const dur = 10 + Math.random()*16;
+    l.style.animationDuration = dur+'s';
+    l.style.animationDelay = (Math.random()*dur)+'s';
+    if(Math.random() > 0.5){ l.style.background = '#c97a3a'; }
+    field.appendChild(l);
+  }
+
+  // Load any sections added through the /admin editor
+  fetch('/content/custom-sections.json')
+    .then(r => r.ok ? r.json() : {sections:[]})
+    .then(data => {
+      const container = document.getElementById('custom-sections');
+      if (!container || !data || !Array.isArray(data.sections)) return;
+      data.sections.forEach(sec => {
+        const section = document.createElement('section');
+        const label = document.createElement('div');
+        label.className = 'section-label';
+        label.textContent = sec.label || '';
+        const title = document.createElement('h2');
+        title.className = 'section-title';
+        title.textContent = sec.title || '';
+        section.appendChild(label);
+        section.appendChild(title);
+        (sec.body || '').split('\n\n').forEach(paraText => {
+          if (!paraText.trim()) return;
+          const p = document.createElement('p');
+          p.style.cssText = "font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;";
+          p.textContent = paraText;
+          section.appendChild(p);
+        });
+        container.appendChild(section);
+      });
+    })
+    .catch(() => {});
+
+  // Netlify Identity: send people straight to the editor after they confirm an invite
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
