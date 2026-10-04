@@ -39,22 +39,69 @@
 
   a{color:inherit;text-decoration:none;}
 
-  /* ---------- NAV ---------- */
+  /* ---------- NAV WITH DROPDOWN ---------- */
   nav{
     position:fixed;
     top:0; left:0; right:0;
     display:flex;
     justify-content:flex-end;
+    align-items:center;
     gap:28px;
     padding:22px 40px;
-    z-index:50;
+    z-index:100;
     font-size:14px;
     letter-spacing:0.02em;
-    mix-blend-mode:difference;
-    color:#fff;
+    color:#1c1a12;
   }
-  nav a{opacity:0.85; transition:opacity .2s;}
-  nav a:hover{opacity:1;}
+  nav > a{
+    opacity:0.85;
+    transition:opacity .2s;
+    text-shadow:0 1px 2px rgba(255,255,255,0.8), 0 0 10px rgba(255,255,255,0.5);
+  }
+  nav > a:hover{opacity:1;}
+
+  .nav-dropdown{
+    position:relative;
+    padding:6px 0;
+  }
+  .nav-dropdown-trigger{
+    cursor:default;
+    opacity:0.85;
+    transition:opacity .2s;
+    text-shadow:0 1px 2px rgba(255,255,255,0.8), 0 0 10px rgba(255,255,255,0.5);
+  }
+  .nav-dropdown:hover .nav-dropdown-trigger{opacity:1;}
+
+  .nav-dropdown-menu{
+    position:absolute;
+    top:100%;
+    right:0;
+    margin-top:2px;
+    background:rgba(253,248,239,0.98);
+    border-radius:8px;
+    padding:8px 0;
+    min-width:160px;
+    box-shadow:0 14px 34px rgba(20,18,12,0.28);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-6px);
+    transition:opacity .16s ease, transform .16s ease, visibility .16s;
+  }
+  .nav-dropdown:hover .nav-dropdown-menu{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+  }
+  .nav-dropdown-menu a{
+    display:block;
+    padding:9px 18px;
+    color:#1c1a12;
+    font-size:13.5px;
+    white-space:nowrap;
+    text-shadow:none;
+    opacity:1;
+  }
+  .nav-dropdown-menu a:hover{background:rgba(20,18,12,0.07);}
 
   /* ---------- FIXED FULL-PAGE MEADOW SCENE ---------- */
   #scene{
@@ -352,7 +399,16 @@
 <nav>
   <a href="index.html#approach">Approach</a>
   <a href="macro-view.html">Macro View</a>
-  <a href="case-study.html">Case Study</a>
+  <div class="nav-dropdown">
+    <span class="nav-dropdown-trigger">Case Study</span>
+    <div class="nav-dropdown-menu">
+      <a href="boost-case-study.html">Boost Mobile</a>
+      <a href="apple-case-study.html">Apple</a>
+      <a href="netflix-case-study.html">Netflix</a>
+      <a href="tmobile-case-study.html">T-Mobile</a>
+      <a href="att-case-study.html">AT&T</a>
+    </div>
+  </div>
   <a href="index.html#experience">Experience</a>
   <a href="index.html#skills">Skills</a>
   <a href="index.html#contact">Contact</a>
@@ -566,75 +622,6 @@
 
 
 </section>
-
-<section id="comparative">
-  <div class="section-label">Comparative Analysis</div>
-  <h2 class="section-title">Apple, Netflix, T-Mobile, and AT&T — growth economics and the simplest path forward.</h2>
-  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch;">
-    Same exercise as Boost, applied to four very different growth businesses: real numbers from their most recent filings, my own modeled CAC/LTV/payback assumptions clearly marked as mine, a simple revenue growth read, and — borrowing a discipline I associate with Steve Jobs — the single simplest lever each company actually has, stripped of complexity.
-  </p>
-
-  <h3 class="subhead">Apple</h3>
-  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch;">
-    Fiscal Q3 2026 (ended June 27, 2026): revenue of $109.4 billion, up 16% year-over-year. iPhone revenue $54.3 billion (+22%), Services revenue $30.7 billion (+12%, though it missed analyst estimates). The installed base of active devices hit a new all-time high, and paid Services subscriptions passed 1.5 billion.
-  </p>
-  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;">
-    Apple doesn't have subscriber churn in the traditional sense, so CAC/LTV looks different here. My model: Apple's real CAC per device is low — brand pull does most of the acquisition work, not paid marketing — so hardware is close to self-funding from the first sale. The actual long-term value comes from Services revenue layered onto a device over its multi-year life. If I assume a ~4-year average device replacement cycle and modeled Services revenue of roughly $85–95 per device per year (derived from Services revenue ÷ installed base, a rough estimate since Apple doesn't disclose this directly), that's roughly $340–380 in Services LTV per device, on top of the hardware margin captured upfront. The device sale pays for itself immediately; Services is the compounding layer on top.
-  </p>
-  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;">
-    Revenue growth read: 16% this quarter, but Apple itself guided next quarter down to 9–11%, citing FX headwinds and supply constraints — a real deceleration, by their own admission, not my speculation.
-  </p>
-  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;">
-    <strong>Simplest path:</strong> stop trying to sell the next device to a new customer, and sell one more thing to the device you've already sold. With 2.5 billion-plus active devices already in hand, the growth math favors deepening Services attach over chasing incremental hardware units — the installed base is the asset; Services is just how much of it you're using.
-  </p>
-
-  <h3 class="subhead">Netflix</h3>
-  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch;">
-    Q2 2026: revenue of $12.6 billion, up 13% year-over-year, with full-year guidance narrowed to $51.0–51.4 billion (12–14% growth). Ad revenue is on track to roughly double in 2026 to about $3 billion, and management says ads now account for roughly a quarter of incremental revenue growth. Netflix stopped disclosing quarterly subscriber counts and ARM (average revenue per membership) back in Q1 2025, which makes this one the hardest of the four to model cleanly — I want to flag that upfront rather than pretend otherwise.
-  </p>
-  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;">
-    Without disclosed churn or exact ARM, any CAC/LTV figure here is more speculative than the other three. Using a rough blended ARM estimate around $12–13/month (regional estimates run from ~$17.50 in the U.S./Canada down to ~$7 in Latin America) and an assumed monthly churn in the 2.0–2.5% range common to mature streaming services, modeled average lifetime would run 40–50 months, implying an LTV somewhere in the $350–450 range at a ~35% content-adjusted margin. I'd treat that range as a rough sketch, not a confident number — Netflix's own disclosure gap is the real story here.
-  </p>
-  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;">
-    Revenue growth read: a clear, gradual deceleration — 18% in Q4 2025, down to 16% in Q1 2026, down to 13% in Q2 2026 — consistent with a maturing subscriber base where pricing and ads are doing more of the growth work than new membership volume.
-  </p>
-  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;">
-    <strong>Simplest path:</strong> stop optimizing for new subscribers and optimize for hours watched per existing one. Netflix's moat was never subscriber count — it's that once you're in, there's always something queued up. More engagement from the people already paying is a more reliable lever than finding new ones in an increasingly saturated market.
-  </p>
-
-  <h3 class="subhead">T-Mobile</h3>
-  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch;">
-    Q2 2026: postpaid net account additions of 277,000 (down 13% year-over-year off a tough comp), postpaid ARPA of $152.91 (+2%), postpaid phone churn of just 0.85% — down meaningfully year-over-year and the lowest of any major U.S. carrier this quarter. Postpaid service revenue grew 13% to $15.9 billion. Management flagged Q3 net adds dropping to roughly 250,000 due to planned rate-plan changes temporarily lifting churn.
-  </p>
-  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;">
-    At 0.85% monthly phone churn, modeled average account lifetime runs about 118 months — nearly a decade. Applying a ~40% contribution margin to the $152.91 ARPA gives a modeled LTV near $7,200 per account. T-Mobile doesn't disclose CAC, so I modeled $500 as a reasonable assumption for blended acquisition cost per account; that implies a payback period of roughly 8 months and an LTV:CAC ratio over 14x — an extremely favorable modeled economics, which matches how durable the underlying churn number actually is.
-  </p>
-  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;">
-    Revenue growth read: postpaid service revenue growth (13%) is outpacing net add growth, meaning the gains are increasingly coming from existing accounts spending more, not just new ones — a healthier growth mix than pure volume.
-  </p>
-  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;">
-    <strong>Simplest path:</strong> T-Mobile already found this one and it's worth naming directly — "Un-carrier." One clear, simple promise (no contracts, no hidden fees, better value) repeated for over a decade, instead of a new complicated pitch every year. The lesson generalizes: pick one honest advantage and don't dilute it.
-  </p>
-
-  <h3 class="subhead">AT&T</h3>
-  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch;">
-    Q2 2026: 432,000 postpaid phone net adds (beating estimates of roughly 338,500), postpaid phone churn of 0.86%, postpaid phone ARPU of $58.01, wireless service revenue of $17.41 billion. Converged customers — those taking both wireless and home internet from AT&T — reached 6.0 million, a 42.5% convergence rate, and AT&T's own management stated plainly that converged customers churn less and carry higher lifetime value.
-  </p>
-  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;">
-    At 0.86% monthly churn, modeled average subscriber lifetime runs about 116 months. On a per-phone-line basis (not the multi-line account basis T-Mobile reports), applying a ~40% margin to the $58.01 ARPU gives a modeled LTV near $2,690. Using an assumed CAC of $450, that's a payback period of about 19 months and an LTV:CAC near 6x — solidly positive, but structurally lower than T-Mobile's per-account economics simply because this is a per-line, not per-account, comparison; the two aren't directly apples-to-apples.
-  </p>
-  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;">
-    Revenue growth read: net adds are beating expectations and churn is stable, but AT&T itself is explicit that convergence — not wireless alone — is the growth engine; wireless-only churn resistance is real but smaller than the churn reduction convergence delivers.
-  </p>
-  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;">
-    <strong>Simplest path:</strong> one bill, one network, one reason to never call a competitor. AT&T's CEO put it in four words on the Q2 call — "Where we have fiber, we win" — which is really just convergence restated as simply as possible. The strategy isn't complicated; it's just under-deployed relative to AT&T's footprint.
-  </p>
-
-  <p class="assumption-note" style="margin-top:26px;">
-    Revenue, subscriber, churn, and ARPU/ARPA figures for all four companies are sourced from their most recent SEC filings and earnings releases (Apple's fiscal Q3 2026, Netflix's and T-Mobile's and AT&T's calendar Q2 2026). CAC, LTV, payback period, and the modeled device/Services economics for Apple are my own assumptions, built where the companies don't disclose the underlying figures directly — Netflix's numbers in particular should be read as a rough sketch given the company no longer reports subscriber counts or ARM. The "simplest path" framing for each company is my own synthesis, not a statement from any of these companies.
-  </p>
-</section>
-
 
 <footer>© 2026 Matt Ellison</footer>
 
