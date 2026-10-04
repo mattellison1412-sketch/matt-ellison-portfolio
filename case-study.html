@@ -8,7 +8,7 @@
 <style>
   :root{
     --cream:#fdf8ef;
-    --ink:#fdf8ef;
+    --ink:#1c1a12;
     --gold:#f0c869;
     --line:rgba(255,255,255,0.16);
     --sp:0;
@@ -26,7 +26,7 @@
     font-family:'Iowan Old Style','Georgia',serif;
     font-weight:600;
     margin:0;
-    text-shadow:0 2px 14px rgba(20,25,10,0.55);
+    text-shadow:0 1px 3px rgba(255,255,255,0.7), 0 0 14px rgba(255,255,255,0.4);
   }
 
   p, a, li, span, label, input, textarea, button{
@@ -34,7 +34,7 @@
   }
 
   p, td, th, .exp-years, .assumption-note{
-    text-shadow:0 1px 10px rgba(20,25,10,0.6);
+    text-shadow:0 1px 2px rgba(255,255,255,0.75), 0 0 10px rgba(255,255,255,0.45);
   }
 
   a{color:inherit;text-decoration:none;}
@@ -191,7 +191,7 @@
     flex-direction:column;
     justify-content:flex-end;
     padding:0 40px 90px;
-    color:#fffdf5;
+    color:#1c1a12;
   }
   .hero-eyebrow{
     font-family:'Helvetica Neue',Arial,sans-serif;
@@ -199,7 +199,7 @@
     letter-spacing:0.03em;
     opacity:0.95;
     margin-bottom:14px;
-    text-shadow:0 2px 12px rgba(20,25,10,0.6);
+    text-shadow:0 1px 2px rgba(255,255,255,0.75), 0 0 12px rgba(255,255,255,0.45);
   }
   .hero h1{
     font-size:clamp(40px, 7vw, 84px);
@@ -209,11 +209,11 @@
   .hero-sub{
     margin-top:18px;
     font-family:'Helvetica Neue',Arial,sans-serif;
-    font-size:17px;
+    font-size:19px;
     max-width:46ch;
     opacity:0.97;
     line-height:1.5;
-    text-shadow:0 2px 12px rgba(20,25,10,0.6);
+    text-shadow:0 1px 2px rgba(255,255,255,0.75), 0 0 12px rgba(255,255,255,0.45);
   }
 
   .scroll-cue{
@@ -222,9 +222,9 @@
     z-index:5;
     font-family:'Helvetica Neue',Arial,sans-serif;
     font-size:13px;
-    color:#fffdf5;
+    color:#1c1a12;
     opacity:0.85;
-    text-shadow:0 2px 12px rgba(20,25,10,0.6);
+    text-shadow:0 1px 2px rgba(255,255,255,0.75), 0 0 12px rgba(255,255,255,0.45);
   }
 
   /* ---------- SECTIONS: no panel, text floats on the scene ---------- */
@@ -239,10 +239,10 @@
     font-size:14px;
     color:var(--gold);
     margin-bottom:10px;
-    text-shadow:0 1px 10px rgba(20,25,10,0.6);
+    text-shadow:0 1px 2px rgba(255,255,255,0.75), 0 0 10px rgba(255,255,255,0.45);
   }
   .section-title{
-    font-size:clamp(28px,4vw,40px);
+    font-size:clamp(30px,4.2vw,42px);
     max-width:20ch;
     margin-bottom:44px;
   }
@@ -252,36 +252,36 @@
     grid-template-columns:130px 1fr;
     gap:24px;
     padding:26px 0;
-    border-top:1px solid rgba(255,255,255,0.3);
+    border-top:1px solid rgba(20,18,12,0.35);
   }
-  .exp-row:last-child{border-bottom:1px solid rgba(255,255,255,0.3);}
+  .exp-row:last-child{border-bottom:1px solid rgba(20,18,12,0.35);}
   .exp-years{
     font-family:'Helvetica Neue',Arial,sans-serif;
     font-size:14px;
-    color:#f3f0e4;
+    color:#2a2718;
     padding-top:3px;
   }
   .exp-row h3{font-size:20px; margin-bottom:6px;}
-  .exp-row p{font-size:15px; line-height:1.55; color:#fdf8ef; max-width:60ch;}
+  .exp-row p{font-size:17px; line-height:1.6; color:#1c1a12; max-width:60ch;}
 
   .grid-3{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:32px;
   }
-  .skill-card h3{font-size:16px; margin-bottom:8px; text-shadow:0 1px 10px rgba(20,25,10,0.6);}
-  .skill-card p{font-size:14px; color:#fdf8ef; line-height:1.5;}
+  .skill-card h3{font-size:16px; margin-bottom:8px; text-shadow:0 1px 2px rgba(255,255,255,0.75), 0 0 10px rgba(255,255,255,0.45);}
+  .skill-card p{font-size:16px; color:#1c1a12; line-height:1.55;}
 
   .project{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:20px;
     padding:28px 0;
-    border-top:1px solid rgba(255,255,255,0.3);
+    border-top:1px solid rgba(20,18,12,0.35);
   }
-  .project:last-child{border-bottom:1px solid rgba(255,255,255,0.3);}
+  .project:last-child{border-bottom:1px solid rgba(20,18,12,0.35);}
   .project h3{font-size:19px; margin-bottom:8px;}
-  .project p{font-size:14.5px; color:#fdf8ef; line-height:1.55;}
+  .project p{font-size:16.5px; color:#1c1a12; line-height:1.6;}
   .project a{font-size:13.5px; color:var(--gold); font-family:'Helvetica Neue',Arial,sans-serif;}
 
   .data-table{
@@ -289,7 +289,7 @@
     border-collapse:collapse;
     margin:28px 0;
     font-family:'Helvetica Neue',Arial,sans-serif;
-    font-size:14px;
+    font-size:15.5px;
   }
   .data-table th{
     text-align:left;
@@ -298,12 +298,12 @@
     text-transform:uppercase;
     color:var(--gold);
     padding:10px 14px 10px 0;
-    border-bottom:1px solid rgba(255,255,255,0.35);
+    border-bottom:1px solid rgba(20,18,12,0.4);
   }
   .data-table td{
     padding:11px 14px 11px 0;
-    border-bottom:1px solid rgba(255,255,255,0.18);
-    color:#fdf8ef;
+    border-bottom:1px solid rgba(20,18,12,0.2);
+    color:#1c1a12;
   }
   .subhead{
     font-size:21px;
@@ -311,7 +311,7 @@
     margin-bottom:14px;
   }
   .assumption-note{
-    font-size:13px; line-height:1.6; color:#f0ead8; max-width:68ch; margin-top:10px; font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:14.5px; line-height:1.65; color:#3a3528; max-width:68ch; margin-top:10px; font-family:'Helvetica Neue',Arial,sans-serif;
   }
 
   .contact-block{
@@ -328,8 +328,8 @@
     padding:30px 44px 50px;
     font-family:'Helvetica Neue',Arial,sans-serif;
     font-size:13px;
-    color:#fdf8ef;
-    text-shadow:0 1px 10px rgba(20,25,10,0.6);
+    color:#1c1a12;
+    text-shadow:0 1px 2px rgba(255,255,255,0.75), 0 0 10px rgba(255,255,255,0.45);
     max-width:820px;
     margin:0 auto;
   }
@@ -412,17 +412,17 @@
 
 <div style="height:16vh;"></div>
 <div style="max-width:820px; margin:0 auto; padding:0 44px;">
-  <a href="index.html" style="color:#fdf8ef; font-family:'Helvetica Neue',Arial,sans-serif; font-size:14px; text-shadow:0 1px 10px rgba(20,25,10,0.6);">← Back to home</a>
+  <a href="index.html" style="color:#1c1a12; font-family:'Helvetica Neue',Arial,sans-serif; font-size:14px; text-shadow:0 1px 2px rgba(255,255,255,0.75), 0 0 10px rgba(255,255,255,0.45);">← Back to home</a>
 </div>
 <section id="boost">
   <div class="section-label">Case Study</div>
   <h2 class="section-title">Boost Mobile — subscriber economics and retention.</h2>
 
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch;">
     EchoStar's Boost Mobile is a useful real-world case for marketing-driven unit economics because its public filings show a brand that almost didn't make it. Since EchoStar took over the carrier, it lost roughly 2 million subscribers through 2024 before turning a corner: net additions returned in 2025, with +150K in Q1, +212K in Q2, and +223K in Q3, bringing the base to roughly 7.5 million subscribers. Full-year 2025 wireless churn improved to 2.84%, down from 3.00% in 2024, while ARPU grew 2.3% to $37.41. What follows is my own modeled read on what's driving that turnaround and where the economics could still improve, built from Boost's disclosures plus my own assumptions wherever the company doesn't break out the underlying marketing figures.
   </p>
 
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:20px;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:20px;">
     To estimate acquisition economics, I modeled a blended contribution margin of ~50% on service revenue after network and support costs, and a CAC of roughly $180 per gross add — toward the lower end of typical prepaid carrier CAC, given Boost's growing mix of lower-cost digital-channel sales. At a 2.84% monthly churn rate, that implies an average subscriber lifetime near 35 months. Working through the model: LTV ≈ $37.41 × 50% × 35 months ≈ <strong>$655</strong>; payback period ≈ $180 ÷ ($37.41 × 50%) ≈ <strong>9.6 months</strong>; and acquisition ROI lands near <strong>2.6x</strong> (LTV:CAC). None of those three are disclosed by EchoStar directly — they're my own build from the company's reported ARPU and churn.
   </p>
 
@@ -437,24 +437,24 @@
     <tr><td>36</td><td>2.84%</td><td>312</td></tr>
   </table>
 
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:28px;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:28px;">
     On why churn actually moved: Boost's own disclosures point to two real levers behind the FY2025 improvement — a management-stated shift toward acquiring and retaining "higher quality, long-term subscribers," and continued growth in self-pay digital-channel sales, which likely carry a materially lower CAC than the dealer/retail channel (the company specifically calls out dealer incentive costs as a drag). That matches a broader pattern in prepaid wireless: subsidized or heavily discounted acquisition channels bring in subscribers who churn fast, while self-pay digital subscribers tend to stick around longer. The 2025 subscriber mix shift — including higher government-subsidized growth replacing the lost Affordable Connectivity Program base — suggests Boost is actively managing which segments it leans into, not just chasing gross adds.
   </p>
 
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:20px;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:20px;">
     On where churn "should" be: leading prepaid/MVNO brands have historically run in the 2.0%–2.5% monthly range, which leaves Boost's 2.84% with roughly 30–80 basis points of gap still to close. Because churn compounds against lifetime value, tightening the first 90 days — where the curve above is steepest — would likely be worth more to LTV than any further ARPU increase from here.
   </p>
 
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:20px;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:20px;">
     On ARPU versus churn: 2.3% ARPU growth is a reasonable number in isolation, but on its own it wasn't enough to offset the subscriber losses Boost experienced from 2020 to 2024. It only starts compounding into real revenue growth once churn stabilizes and net adds turn positive together — which is effectively what happened in 2025, when the combination helped drive a 7% year-over-year increase in wireless service revenue.
   </p>
 
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:20px;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:20px;">
     Retention strategies worth pursuing from here: tighten early-tenure churn specifically, since that's where the most value typically leaks before a subscriber's LTV has a chance to develop; keep shifting acquisition mix toward self-pay digital channels, the structurally lower-CAC, higher-quality path based on the company's own commentary; and bundle Sling TV with Boost plans. EchoStar already owns both brands and has precedent for bundling driving retention — its own Dish-Netflix pay-TV bundle measurably improved churn. A Boost+Sling bundle could work the same way on the wireless side: it raises the switching cost of leaving, since a customer would have to replace two services instead of one, and it gives EchoStar a lower-incremental-CAC acquisition channel by cross-selling into its existing Sling base instead of paid marketing.
   </p>
 
   <h3 class="subhead">Quarterly trend: is the growth actually holding up?</h3>
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch;">
     Looking at this quarter by quarter, rather than just the full-year numbers, tells a more honest story than the FY2025 headline does.
   </p>
   <table class="data-table">
@@ -468,21 +468,21 @@
     <tr><td>Q3 2025</td><td>+223K</td><td>7.52M</td><td>$836.2M</td><td>$37.22</td><td>—</td></tr>
     <tr><td>Q4 2025</td><td>-9K</td><td>7.51M</td><td>≈$846.5M</td><td>$37.18</td><td>—</td></tr>
   </table>
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:20px;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:20px;">
     Three straight quarters of accelerating net adds (Q1 → Q3 2025) looked like a genuine turnaround. Then Q4 2025 posted a net loss of 9,000 subscribers and ARPU slipped year-over-year to $37.18 from $37.61 — even with churn still broadly under control. In other words, the "churn is falling and CAC is staying low, but revenue is flat" scenario isn't a hypothetical here. It already happened.
   </p>
 
   <h3 class="subhead">If revenue stalls while churn and CAC look fine, where's it actually leaking?</h3>
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch;">
     If I were sitting in Boost's seat looking at a quarter like Q4 2025, I wouldn't take "churn is low and CAC looks fine" at face value — I'd want to know which of three things is actually happening underneath those headline numbers:
   </p>
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:16px;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;">
     <strong>1. Mix dilution, not demand weakness.</strong> The company's own filings attribute recent net adds partly to higher Government-subsidized subscriber growth. If an increasing share of new subscribers are on lower-ARPU subsidized plans, you can grow subscriber count and lose blended ARPU at the same time — the net-adds number looks healthy while revenue per subscriber quietly erodes. The analysis needed here is an ARPU-by-acquisition-segment breakout, not just a blended company-wide average.
   </p>
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:14px;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:14px;">
     <strong>2. Hidden cost in the device subsidy line, not the marketing line.</strong> EchoStar explicitly cites "deeper wireless device subsidies" as a competitive pressure. A low reported CAC can mask real acquisition cost if it's being paid through subsidized hardware rather than marketing spend — the dollars just moved to a different line item. The fix is a fully-loaded CAC view that folds device subsidy cost into acquisition economics, not just marketing spend per gross add.
   </p>
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:14px;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:14px;">
     <strong>3. Market-share zero-sum pressure.</strong> The U.S. prepaid market is growing only modestly overall, so further growth increasingly has to come from switchers, not new-to-category customers. Taking share from a competitor is harder to do profitably than growing with the category, and it tends to come with pricing concessions that compress ARPU even while churn and CAC both look stable. This calls for win/loss and porting analysis — specifically, where are switchers coming from, and what price or offer moved them.
   </p>
 
@@ -494,23 +494,23 @@
     <tr><td>Boost Mobile</td><td>EchoStar / AT&T network (since Nov. 2025)</td><td>~7.5M</td></tr>
     <tr><td>Visible</td><td>Verizon / Verizon network</td><td>~3M+</td></tr>
   </table>
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:20px;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:20px;">
     Here's a real fact worth flagging, though what I draw from it is my own hypothesis, not something Boost has said: in November 2025, Boost shut down its own 5G radio network and moved subscribers onto AT&T's network under a long-term agreement running through at least 2031. Boost still runs its own 5G core — billing, plans, support — but the physical network underneath is now AT&T's. Cricket is already AT&T's own wholly-owned prepaid brand, running on that same network. My read is that this makes a "strong, reliable network" pitch a weaker differentiator for Boost than it used to be, since it arguably validates Cricket's claim just as much. I could be wrong about how much this matters in practice — brand perception often lags the underlying infrastructure reality by years, and Boost may have reasons (contractual, technical, or simply different coverage maps in different markets) why the two networks don't feel equivalent to a customer even if they're the same physically. It's a hypothesis worth testing, not a settled conclusion.
   </p>
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:16px;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;">
     If that hypothesis holds, one reasonable implication is that marketing dollars are better spent on dimensions where there's a clearer gap to exploit — price positioning, the DISH/Sling bundle (something Cricket and Metro can't replicate), the government-subsidized segment, and dealer footprint — rather than a network-reliability message that may quietly help Cricket as much as Boost. I'd want to see actual brand-perception survey data before committing real budget to this, though; it's a plausible argument, not a proven one.
   </p>
 
   <h3 class="subhead">What it would actually take to get to 15–17 million subscribers</h3>
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch;">
     At ~7.5 million subscribers today, getting to 15–17 million means roughly doubling the base — enough to clear Cricket's ~10 million and meaningfully close the gap on Metro's ~22 million. It's worth being honest about what the current trajectory actually implies: 2025's full-year net add of about 576,000 subscribers, even at the improved pace from the back half of the year, extrapolates to something like 7–8 years to add another 7.5–9.5 million subscribers organically — and that's before accounting for a quarter like Q4 2025, where growth stalled outright. Organic growth at the current run-rate alone does not get Boost there in a competitively relevant timeframe.
   </p>
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:16px;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;">
     Closing that gap faster would realistically require some combination of: (1) a decisive segment push into the value/subsidized tier where Boost already has disclosed momentum, accepting lower ARPU in exchange for share; (2) the Sling/Boost bundle as a structural acquisition channel rather than a side promotion, cross-selling into Sling's existing base at a lower incremental CAC than paid marketing; (3) a pricing move specifically targeted at Cricket, since the two brands now share the same underlying network cost structure, which narrows the case for Cricket's modest price premium; and (4) inorganic growth — acquiring a smaller MVNO or regional prepaid brand — since EchoStar has both the capital history and the M&A appetite to do this, and it's a faster lever than organic net adds alone. Any one of these in isolation probably isn't enough; getting to 15–17 million in a reasonable window likely means doing at least two of them at once.
   </p>
 
   <h3 class="subhead">Showing the actual math: projecting subscribers one year out</h3>
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch;">
     Rather than just asserting a timeline, here's how I'd actually build it — starting from the real Q4 2025 base of 7.51 million subscribers, and two simple inputs each month: how many new subscribers come in (gross adds), and what share of the existing base leaves (churn). Net change = gross adds minus (churn rate × current base). I ran this forward 12 months under three different sets of assumptions, so you can see exactly which input is doing the work.
   </p>
   <table class="data-table">
@@ -519,12 +519,12 @@
     <tr><td>Base</td><td>230K</td><td>2.84% (actual)</td><td>7.60M</td><td>7.68M</td><td>~8.10M</td></tr>
     <tr><td>Bull</td><td>320K</td><td>2.50%</td><td>8.26M</td><td>8.90M</td><td>~12.80M</td></tr>
   </table>
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:20px;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:20px;">
     The honest takeaway: even the bull case — meaningfully higher gross adds and better churn than Boost has actually achieved in any recent quarter — only reaches about 8.9 million in a year, and its long-run equilibrium of 12.8 million still falls short of 15–17 million. Getting there isn't a matter of running the current playbook a little harder; it requires changing the inputs themselves (higher gross adds, lower churn, or both) by more than any single quarter of 2025 has shown so far. I could be wrong about how achievable a step-change like that is — I don't have visibility into Boost's internal roadmap — but the arithmetic is what it is.
   </p>
 
   <h3 class="subhead">Where the assumptions bend: CAC and churn sensitivity</h3>
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch;">
     The $655 LTV and 2.6x ROI figure from earlier depend entirely on a $180 CAC and 2.84% churn holding steady. Neither necessarily will, so here's how the picture changes as each one moves:
   </p>
   <table class="data-table">
@@ -541,24 +541,24 @@
     <tr><td>3.20%</td><td>31 months</td><td>$585</td><td>2.3x</td></tr>
     <tr><td>3.50%</td><td>29 months</td><td>$535</td><td>2.0x</td></tr>
   </table>
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:16px;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;">
     One plain-language point worth separating out: churn mainly affects LTV and ROI, not the payback period — payback is really just CAC divided by monthly margin, so it barely moves no matter what churn does. CAC is the lever that moves payback. That matters here because the $180 CAC I used is based on Boost's <em>recent, relatively easy</em> subscribers — price-sensitive switchers and the growing self-pay digital channel. The next subscriber, especially one happily sitting with Cricket or Metro already, probably costs more to win — likely requiring a bigger device subsidy or promo. That's "marginal CAC," and it's probably closer to the $230–$280 rows above than the $180 base case once Boost is actively trying to take share rather than just capture easy switchers. I don't have a disclosed figure to confirm this — it's a reasonable assumption based on how acquisition costs typically behave as a market matures, not a certainty.
   </p>
 
   <h3 class="subhead">Where this might actually be falling short, and simple fixes</h3>
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch;">
     Keeping this part simple on purpose — four plain hypotheses, each with one straightforward fix, rather than a bigger framework:
   </p>
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:14px;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:14px;">
     <strong>1. The network pitch may not land.</strong> If the AT&T-network overlap with Cricket is real in customers' minds, leading with "reliable network" wastes a message. Fix: lead with price and the Sling bundle instead.
   </p>
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:10px;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:10px;">
     <strong>2. The dealer channel may be bringing in the wrong customers.</strong> Dealer-driven subscribers appear to churn faster and cost more. Fix: keep pushing sign-ups toward the self-pay digital channel, even if growth looks slower in the short term.
   </p>
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:10px;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:10px;">
     <strong>3. Boost probably can't out-subsidize AT&T's own brand.</strong> Cricket's parent can likely always match a device-discount war. Fix: compete on something Cricket structurally can't copy — the Sling/DISH bundle — rather than subsidy depth.
   </p>
-  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:10px;">
+  <p style="font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:10px;">
     <strong>4. Most of the value is probably leaking in the first 90 days.</strong> That's where the churn curve modeled earlier is steepest. Fix: a cheap onboarding touchpoint — a welcome text, a simple first-bill explainer — targets exactly that window, for a fraction of CAC.
   </p>
 
@@ -602,7 +602,7 @@
         (sec.body || '').split('\n\n').forEach(paraText => {
           if (!paraText.trim()) return;
           const p = document.createElement('p');
-          p.style.cssText = "font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:16px;";
+          p.style.cssText = "font-size:18px; line-height:1.75; color:#1c1a12; max-width:68ch; margin-top:16px;";
           p.textContent = paraText;
           section.appendChild(p);
         });
