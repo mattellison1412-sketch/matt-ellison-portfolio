@@ -123,3 +123,420 @@
   .fish{
     position:absolute;
     animation-name:swim;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite;
+  }
+  .fish svg{width:100%; height:100%; display:block;}
+  .fish path{fill:#f2a24a;}
+  .fish.pale path{fill:#cfe8f2; opacity:0.85;}
+  .fish.dark path{fill:#1a2f3a;}
+  @keyframes swim{
+    from{transform:translateX(-15vw) scaleX(1);}
+    49%{transform:translateX(105vw) scaleX(1);}
+    50%{transform:translateX(105vw) scaleX(-1);}
+    99%{transform:translateX(-15vw) scaleX(-1);}
+    100%{transform:translateX(-15vw) scaleX(1);}
+  }
+
+  .kelp{
+    position:absolute;
+    bottom:0;
+    transform-origin:bottom center;
+    animation:swayKelp ease-in-out infinite;
+  }
+  .kelp path{fill:#0f4a3a;}
+  @keyframes swayKelp{
+    0%,100%{transform:rotate(-4deg);}
+    50%{transform:rotate(5deg);}
+  }
+
+  .seabed{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    width:100%;
+    height:10%;
+    fill:#02121f;
+  }
+
+  /* ---------- HERO CONTENT (overlays fixed scene) ---------- */
+  .hero{
+    position:relative;
+    height:100vh;
+    min-height:560px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:0 40px 90px;
+    color:#f5fbfd;
+  }
+  .hero-eyebrow{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:14px;
+    letter-spacing:0.03em;
+    opacity:0.9;
+    margin-bottom:14px;
+    text-shadow:0 2px 12px rgba(0,0,0,0.4);
+  }
+  .hero h1{
+    font-size:clamp(40px, 7vw, 84px);
+    line-height:1.02;
+    max-width:14ch;
+    text-shadow:0 2px 20px rgba(0,0,0,0.4);
+  }
+  .hero-sub{
+    margin-top:18px;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:17px;
+    max-width:46ch;
+    opacity:0.95;
+    line-height:1.5;
+    text-shadow:0 2px 12px rgba(0,0,0,0.4);
+  }
+
+  .scroll-cue{
+    position:absolute;
+    bottom:28px; left:40px;
+    z-index:5;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:13px;
+    color:#f5fbfd;
+    opacity:0.8;
+    text-shadow:0 2px 12px rgba(0,0,0,0.4);
+  }
+
+  /* ---------- SECTIONS (translucent panels over the fixed scene) ---------- */
+  section{
+    position:relative;
+    max-width:820px;
+    margin:0 auto;
+    padding:70px 44px;
+    background:rgba(251,247,240,0.72);
+    backdrop-filter:blur(3px) saturate(1.1);
+    -webkit-backdrop-filter:blur(3px) saturate(1.1);
+  }
+  .section-label{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:14px;
+    color:#0e7a92;
+    margin-bottom:10px;
+  }
+  .section-title{
+    font-size:clamp(28px,4vw,40px);
+    max-width:20ch;
+    margin-bottom:44px;
+  }
+
+  .exp-row{
+    display:grid;
+    grid-template-columns:130px 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-top:1px solid rgba(42,33,24,0.12);
+  }
+  .exp-row:last-child{border-bottom:1px solid rgba(42,33,24,0.12);}
+  .exp-years{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:14px;
+    color:#5a6a6e;
+    padding-top:3px;
+  }
+  .exp-row h3{font-size:20px; margin-bottom:6px;}
+  .exp-row p{font-size:15px; line-height:1.55; color:#2f3a3c; max-width:60ch;}
+
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:32px;
+  }
+  .skill-card h3{font-size:16px; margin-bottom:8px;}
+  .skill-card p{font-size:14px; color:#42504f; line-height:1.5;}
+
+  .project{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    padding:28px 0;
+    border-top:1px solid rgba(42,33,24,0.12);
+  }
+  .project:last-child{border-bottom:1px solid rgba(42,33,24,0.12);}
+  .project h3{font-size:19px; margin-bottom:8px;}
+  .project p{font-size:14.5px; color:#2f3a3c; line-height:1.55;}
+  .project a{font-size:13.5px; color:#0e7a92; font-family:'Helvetica Neue',Arial,sans-serif;}
+
+  .data-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:28px 0;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:14px;
+  }
+  .data-table th{
+    text-align:left;
+    font-size:12px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:#0e7a92;
+    padding:10px 14px 10px 0;
+    border-bottom:1px solid rgba(42,33,24,0.25);
+  }
+  .data-table td{
+    padding:11px 14px 11px 0;
+    border-bottom:1px solid rgba(42,33,24,0.1);
+    color:#2f3a3c;
+  }
+  .subhead{
+    font-size:21px;
+    margin-top:40px;
+    margin-bottom:14px;
+  }
+  .assumption-note{
+    font-size:13px; line-height:1.6; color:#5a6a6e; max-width:68ch; margin-top:10px; font-family:'Helvetica Neue',Arial,sans-serif;
+  }
+
+  .contact-block{
+    text-align:left;
+  }
+  .contact-email{
+    font-size:clamp(24px,4vw,34px);
+    display:inline-block;
+    margin:18px 0;
+    border-bottom:1px solid var(--ink);
+  }
+  footer{
+    position:relative;
+    padding:30px 44px 50px;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:13px;
+    color:#2f3a3c;
+    max-width:820px;
+    margin:0 auto;
+    background:rgba(251,247,240,0.72);
+    backdrop-filter:blur(3px);
+    -webkit-backdrop-filter:blur(3px);
+  }
+
+  @media (max-width:680px){
+    .grid-3{grid-template-columns:1fr; gap:26px;}
+    .project{grid-template-columns:1fr;}
+    .exp-row{grid-template-columns:1fr; gap:6px;}
+    nav{gap:18px; padding:18px 20px; font-size:13px;}
+    section{padding:54px 22px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .fish, .mote, .light-rays, .kelp{animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#approach">Approach</a>
+  <a href="macro-view.html">Macro View</a>
+  <a href="case-study.html">Case Study</a>
+  <a href="#experience">Experience</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div id="scene">
+  <div class="water-shallow"></div>
+  <div class="water-deep"></div>
+  <div class="light-rays"></div>
+  <div class="particles" id="particles"></div>
+
+  <!-- Fish spread across the FULL height so motion is visible behind every section -->
+  <div class="fish" style="top:8%; width:46px; height:26px; animation-duration:26s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
+  <div class="fish pale" style="top:16%; width:34px; height:20px; animation-duration:34s; animation-delay:-6s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
+  <div class="fish" style="top:27%; width:52px; height:30px; animation-duration:22s; animation-delay:-12s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
+  <div class="fish dark" style="top:38%; width:38px; height:22px; animation-duration:30s; animation-delay:-3s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
+  <div class="fish pale" style="top:48%; width:44px; height:26px; animation-duration:28s; animation-delay:-18s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
+  <div class="fish" style="top:58%; width:30px; height:18px; animation-duration:24s; animation-delay:-9s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
+  <div class="fish dark" style="top:68%; width:50px; height:29px; animation-duration:33s; animation-delay:-21s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
+  <div class="fish" style="top:78%; width:40px; height:23px; animation-duration:27s; animation-delay:-15s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
+  <div class="fish dark" style="top:87%; width:34px; height:20px; animation-duration:31s; animation-delay:-24s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
+  <div class="fish pale" style="top:94%; width:26px; height:15px; animation-duration:20s; animation-delay:-4s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
+
+  <svg class="kelp" style="left:5%; width:60px; height:180px; animation-duration:6s;" viewBox="0 0 60 180"><path d="M30,180 C10,150 45,120 20,90 C0,65 40,40 25,0 L35,0 C48,40 12,65 32,90 C52,120 22,150 40,180 Z"/></svg>
+  <svg class="kelp" style="left:11%; width:36px; height:110px; animation-duration:5s; animation-delay:-2s;" viewBox="0 0 60 180"><path d="M30,180 C10,150 45,120 20,90 C0,65 40,40 25,0 L35,0 C48,40 12,65 32,90 C52,120 22,150 40,180 Z"/></svg>
+  <svg class="kelp" style="right:7%; width:50px; height:150px; animation-duration:7s; animation-delay:-4s;" viewBox="0 0 60 180"><path d="M30,180 C10,150 45,120 20,90 C0,65 40,40 25,0 L35,0 C48,40 12,65 32,90 C52,120 22,150 40,180 Z"/></svg>
+
+  <svg class="seabed" viewBox="0 0 1200 120" preserveAspectRatio="none">
+    <path d="M0,60 C200,30 400,80 620,50 C860,20 1040,70 1200,45 L1200,120 L0,120 Z"/>
+  </svg>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">FP&A · M&A · Investment Management</div>
+  <h1>Matt Ellison</h1>
+  <p class="hero-sub">Finance professional working across FP&A, M&A, and investment management, with a focus on macroeconomic structure — building the models that turn market shifts into decisions.</p>
+  <div class="scroll-cue">Scroll to explore</div>
+</div>
+
+<section id="approach">
+  <div class="section-label">Approach</div>
+  <h2 class="section-title">What I bring to a finance team.</h2>
+  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:65ch;">
+    My work sits at the intersection of FP&A, M&A, and investment management — I read a business from the top down, at the level of macroeconomic structure and market share, and from the bottom up, at the level of a three-statement model and a single line of capex. That range is what lets me move between very different asset types: technology companies where I'm underwriting long-range revenue against operational profitability, and real estate portfolios where the same discipline gets applied to occupancy rates, DSCR, and land valuation.
+  </p>
+  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:65ch; margin-top:20px;">
+    I've built models on companies ranging from early-stage AI labs to public technology leaders, and before that, co-founded and helped run a private real estate investment partnership from the ground up — sourcing deals, underwriting risk, and living with the outcomes of my own analysis. That combination means I don't just build a model to spec; I understand what the output is actually being used to decide, and I build accordingly.
+  </p>
+  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:65ch; margin-top:20px;">
+    What I'd bring to a finance team: a modeler who's comfortable owning a deal end-to-end, fluent across DCF, LBO, and accretion/dilution frameworks, and grounded enough in macro context to know when the assumptions in a spreadsheet stop matching the world outside it.
+  </p>
+</section>
+
+
+<div id="custom-sections"></div>
+
+<section id="experience">
+  <div class="section-label">Experience</div>
+  <h2 class="section-title">Where the work happened.</h2>
+
+  <div class="exp-row">
+    <div class="exp-years">2020 — Present</div>
+    <div>
+      <h3>Financial Consultant</h3>
+      <p>Build financial models for technology companies — DCF, LBO, accretion/dilution, IRR, ARR, and three-statement models — translating financial statement projections into deal and investment recommendations.</p>
+    </div>
+  </div>
+  <div class="exp-row">
+    <div class="exp-years">2020 — 2022</div>
+    <div>
+      <h3>Senior Financial Analyst</h3>
+      <p>Ran variance analysis across portfolios, ETFs, and REITs, evaluating DSCR, land valuation, occupancy rates, and property growth to identify investment growth areas and underwrite IRR.</p>
+    </div>
+  </div>
+  <div class="exp-row">
+    <div class="exp-years">2018 — 2025</div>
+    <div>
+      <h3>Co-Founder</h3>
+      <p>Built a private investment partnership under SEC Rule 506(b) of Regulation D, focused on real estate. Identified declining-occupancy locations with elevated default risk to source and underwrite investments.</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-label">Skills</div>
+  <h2 class="section-title">A practical toolkit for financial work.</h2>
+  <div class="grid-3">
+    <div class="skill-card">
+      <h3>Modeling</h3>
+      <p>DCF, LBO, accretion/dilution, IRR, ARR, three-statement models, financial statement projections.</p>
+    </div>
+    <div class="skill-card">
+      <h3>Software</h3>
+      <p>Python, SQL, MATLAB, Excel, Bloomberg Terminal, Refinitiv Eikon, Argus, Yardi, SEI Archway.</p>
+    </div>
+    <div class="skill-card">
+      <h3>Focus areas</h3>
+      <p>FP&A, M&A, investment management, macroeconomic structure, real estate and portfolio valuation.</p>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-label">Selected work</div>
+  <h2 class="section-title">Projects made to learn, test, and share.</h2>
+
+  <div class="project">
+    <div>
+      <h3>Technology Sector Valuation Models</h3>
+      <p>Built long-range revenue and profitability models for companies including Hugging Face, Anthropic, OpenAI, Scale AI, Microsoft, Apple, Google, Hims, Nvidia, Palantir, and Astranis — grounded in market share trajectory, capex/opex structure, operating income, and margin analysis.</p>
+    </div>
+    <div>
+      <a href="#">View writeup ↗</a>
+    </div>
+  </div>
+  <div class="project">
+    <div>
+      <h3>Real Estate Investment Partnership</h3>
+      <p>Co-founded and helped run a private investment partnership under SEC Rule 506(b), sourcing real estate opportunities by screening for declining occupancy and elevated default risk against upside potential.</p>
+    </div>
+    <div>
+      <a href="#">View writeup ↗</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <h2 class="section-title">Let's talk about an opportunity.</h2>
+  <div class="contact-block">
+    <a href="mailto:matthew_ellison2@aol.com" class="contact-email">matthew_ellison2@aol.com</a>
+    <p style="font-family:'Helvetica Neue',Arial,sans-serif; font-size:15px; color:#2f3a3c; margin-top:6px;">(317) 645-3604</p>
+    <p style="margin-top:10px;"><a href="https://www.linkedin.com/in/mattellison10" target="_blank" style="text-decoration:underline;">LinkedIn ↗</a></p>
+  </div>
+</section>
+
+<footer>© 2026 Matt Ellison</footer>
+
+<script>
+  // rising particles/bubbles, spread across the full page height
+  const field = document.getElementById('particles');
+  for(let i=0;i<50;i++){
+    const m = document.createElement('div');
+    m.className = 'mote' + (Math.random() > 0.6 ? ' glow' : '');
+    m.style.left = Math.random()*100+'%';
+    m.style.bottom = (Math.random()*100)+'%';
+    const dur = 8 + Math.random()*14;
+    m.style.animationDuration = dur+'s';
+    m.style.animationDelay = (Math.random()*dur)+'s';
+    field.appendChild(m);
+  }
+
+  // scroll-driven shallow-to-deep progress
+  const root = document.documentElement;
+  function updateScrollProgress(){
+    const scrollable = document.body.scrollHeight - window.innerHeight;
+    const fraction = scrollable > 0 ? Math.min(Math.max(window.scrollY / scrollable, 0), 1) : 0;
+    root.style.setProperty('--sp', fraction.toFixed(4));
+  }
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  window.addEventListener('resize', updateScrollProgress);
+  updateScrollProgress();
+
+  // Load any sections added through the /admin editor
+  fetch('/content/custom-sections.json')
+    .then(r => r.ok ? r.json() : {sections:[]})
+    .then(data => {
+      const container = document.getElementById('custom-sections');
+      if (!data || !Array.isArray(data.sections)) return;
+      data.sections.forEach(sec => {
+        const section = document.createElement('section');
+        const label = document.createElement('div');
+        label.className = 'section-label';
+        label.textContent = sec.label || '';
+        const title = document.createElement('h2');
+        title.className = 'section-title';
+        title.textContent = sec.title || '';
+        section.appendChild(label);
+        section.appendChild(title);
+        (sec.body || '').split('\n\n').forEach(paraText => {
+          if (!paraText.trim()) return;
+          const p = document.createElement('p');
+          p.style.cssText = "font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:16px;";
+          p.textContent = paraText;
+          section.appendChild(p);
+        });
+        container.appendChild(section);
+      });
+    })
+    .catch(() => {});
+
+  // Netlify Identity: send people straight to the editor after they confirm an invite
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
