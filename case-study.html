@@ -7,9 +7,9 @@
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <style>
   :root{
-    --cream:#fbf3e6;
-    --ink:#2a2118;
-    --gold:#d7b25a;
+    --cream:#fdf8ef;
+    --ink:#fdf8ef;
+    --gold:#f0c869;
     --line:rgba(255,255,255,0.16);
     --sp:0;
   }
@@ -26,10 +26,15 @@
     font-family:'Iowan Old Style','Georgia',serif;
     font-weight:600;
     margin:0;
+    text-shadow:0 2px 14px rgba(20,25,10,0.55);
   }
 
   p, a, li, span, label, input, textarea, button{
     font-family:'Helvetica Neue',Arial,sans-serif;
+  }
+
+  p, td, th, .exp-years, .assumption-note{
+    text-shadow:0 1px 10px rgba(20,25,10,0.6);
   }
 
   a{color:inherit;text-decoration:none;}
@@ -51,111 +56,130 @@
   nav a{opacity:0.85; transition:opacity .2s;}
   nav a:hover{opacity:1;}
 
-  /* ---------- FIXED FULL-PAGE OCEAN SCENE ---------- */
+  /* ---------- FIXED FULL-PAGE MEADOW SCENE ---------- */
   #scene{
     position:fixed;
     inset:0;
     z-index:-1;
     overflow:hidden;
-    background:#0a2a3d;
+    background:#8fc6e8;
   }
 
-  .water-shallow, .water-deep{
+  .sky{
     position:absolute; inset:0;
-  }
-  .water-shallow{
     background:linear-gradient(180deg,
-      #7fd8e8 0%,
-      #4bb8d6 20%,
-      #2a8fbf 42%,
-      #1c6a9e 64%,
-      #124a78 84%,
-      #0a2d52 100%);
-  }
-  .water-deep{
-    background:linear-gradient(180deg,
-      #133a52 0%,
-      #0d2c42 18%,
-      #0a2038 38%,
-      #071628 58%,
-      #050f1c 78%,
-      #020810 100%);
-    opacity:var(--sp);
+      #6fb3e0 0%,
+      #9fd0ea 28%,
+      #c9e8d8 52%,
+      #a9d98f 68%,
+      #7ab85e 100%);
   }
 
-  .light-rays{
+  .sun{
     position:absolute;
-    top:0; left:0; right:0;
-    height:70%;
-    opacity:calc(0.55 * (1 - var(--sp)));
-    background:
-      linear-gradient(115deg, transparent 10%, rgba(255,255,255,0.18) 13%, transparent 18%),
-      linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.14) 34%, transparent 40%),
-      linear-gradient(120deg, transparent 55%, rgba(255,255,255,0.12) 59%, transparent 65%),
-      linear-gradient(110deg, transparent 75%, rgba(255,255,255,0.16) 79%, transparent 85%);
-    animation:sway 9s ease-in-out infinite;
-  }
-  @keyframes sway{
-    0%,100%{transform:translateX(0);}
-    50%{transform:translateX(-20px);}
-  }
-
-  .particles{position:absolute; inset:0;}
-  .mote{
-    position:absolute;
-    width:3px; height:3px;
-    background:rgba(255,255,255,0.55);
+    top:10%; left:72%;
+    width:130px; height:130px;
+    margin-left:-65px;
     border-radius:50%;
-    animation:rise linear infinite;
+    background:radial-gradient(circle at 50% 50%, #fff7d8 0%, #ffe9a0 55%, rgba(255,233,160,0) 75%);
+    box-shadow:0 0 80px 26px rgba(255,233,160,0.4);
+    animation:sunpulse 7s ease-in-out infinite;
   }
-  .mote.glow{
-    background:rgba(140,220,255,0.8);
-    box-shadow:0 0 6px 2px rgba(140,220,255,0.5);
-    opacity:var(--sp);
-  }
-  @keyframes rise{
-    0%{transform:translateY(0) translateX(0); opacity:0;}
-    10%{opacity:0.8;}
-    90%{opacity:0.5;}
-    100%{transform:translateY(-110vh) translateX(20px); opacity:0;}
+  @keyframes sunpulse{
+    0%,100%{transform:scale(1); opacity:1;}
+    50%{transform:scale(1.03); opacity:0.94;}
   }
 
-  .fish{
+  .cloud{
     position:absolute;
-    animation-name:swim;
+    background:rgba(255,255,255,0.85);
+    border-radius:100px;
+    filter:blur(1px);
+    animation-name:drift;
     animation-timing-function:linear;
     animation-iteration-count:infinite;
   }
-  .fish svg{width:100%; height:100%; display:block;}
-  .fish path{fill:#f2a24a;}
-  .fish.pale path{fill:#cfe8f2; opacity:0.85;}
-  .fish.dark path{fill:#1a2f3a;}
-  @keyframes swim{
-    from{transform:translateX(-15vw) scaleX(1);}
-    49%{transform:translateX(105vw) scaleX(1);}
-    50%{transform:translateX(105vw) scaleX(-1);}
-    99%{transform:translateX(-15vw) scaleX(-1);}
-    100%{transform:translateX(-15vw) scaleX(1);}
-  }
-
-  .kelp{
+  .cloud::before, .cloud::after{
+    content:"";
     position:absolute;
-    bottom:0;
-    transform-origin:bottom center;
-    animation:swayKelp ease-in-out infinite;
+    background:rgba(255,255,255,0.85);
+    border-radius:100px;
   }
-  .kelp path{fill:#0f4a3a;}
-  @keyframes swayKelp{
-    0%,100%{transform:rotate(-4deg);}
-    50%{transform:rotate(5deg);}
+  .cloud::before{ width:60%; height:140%; top:-50%; left:8%; }
+  .cloud::after{ width:45%; height:120%; top:-40%; right:10%; }
+  @keyframes drift{
+    from{transform:translateX(-20vw);}
+    to{transform:translateX(120vw);}
   }
 
-  .seabed{
+  .birds{position:absolute; inset:0; opacity:0.8;}
+  .bird{
+    position:absolute;
+    width:30px; height:12px;
+    animation-name:flyacross;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite;
+  }
+  .bird svg{width:100%; height:100%;}
+  .bird path{stroke:#2a2410; stroke-width:2.2; fill:none; stroke-linecap:round;}
+  @keyframes flyacross{
+    from{transform:translateX(-10vw);}
+    to{transform:translateX(110vw);}
+  }
+
+  .hill{
     position:absolute;
     left:0; right:0; bottom:0;
     width:100%;
-    height:10%;
-    fill:#02121f;
+  }
+  .hill-far{height:38%; fill:#8fc47a; opacity:0.9;}
+  .hill-mid{height:26%; fill:#6fae5a;}
+  .hill-near{height:16%; fill:#4f8f42;}
+
+  .tree{
+    position:absolute;
+    bottom:0;
+    transform-origin:bottom center;
+    animation:swayTree ease-in-out infinite;
+  }
+  .tree .trunk{fill:#5a3d26;}
+  .tree .leaves{fill:#3f7a3a;}
+  @keyframes swayTree{
+    0%,100%{transform:rotate(-2deg);}
+    50%{transform:rotate(2deg);}
+  }
+
+  .grass-row{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height:6%;
+  }
+  .blade{
+    position:absolute;
+    bottom:0;
+    width:3px;
+    background:#3f7a3a;
+    transform-origin:bottom center;
+    animation:swayGrass ease-in-out infinite;
+  }
+  @keyframes swayGrass{
+    0%,100%{transform:rotate(-6deg);}
+    50%{transform:rotate(6deg);}
+  }
+
+  .particles{position:absolute; inset:0;}
+  .leaf{
+    position:absolute;
+    width:8px; height:8px;
+    background:#d9a441;
+    border-radius:0 60% 0 60%;
+    animation:fall linear infinite;
+  }
+  @keyframes fall{
+    0%{transform:translateY(-10vh) translateX(0) rotate(0deg); opacity:0;}
+    10%{opacity:0.85;}
+    90%{opacity:0.6;}
+    100%{transform:translateY(110vh) translateX(40px) rotate(360deg); opacity:0;}
   }
 
   /* ---------- HERO CONTENT (overlays fixed scene) ---------- */
@@ -167,30 +191,29 @@
     flex-direction:column;
     justify-content:flex-end;
     padding:0 40px 90px;
-    color:#f5fbfd;
+    color:#fffdf5;
   }
   .hero-eyebrow{
     font-family:'Helvetica Neue',Arial,sans-serif;
     font-size:14px;
     letter-spacing:0.03em;
-    opacity:0.9;
+    opacity:0.95;
     margin-bottom:14px;
-    text-shadow:0 2px 12px rgba(0,0,0,0.4);
+    text-shadow:0 2px 12px rgba(20,25,10,0.6);
   }
   .hero h1{
     font-size:clamp(40px, 7vw, 84px);
     line-height:1.02;
     max-width:14ch;
-    text-shadow:0 2px 20px rgba(0,0,0,0.4);
   }
   .hero-sub{
     margin-top:18px;
     font-family:'Helvetica Neue',Arial,sans-serif;
     font-size:17px;
     max-width:46ch;
-    opacity:0.95;
+    opacity:0.97;
     line-height:1.5;
-    text-shadow:0 2px 12px rgba(0,0,0,0.4);
+    text-shadow:0 2px 12px rgba(20,25,10,0.6);
   }
 
   .scroll-cue{
@@ -199,26 +222,24 @@
     z-index:5;
     font-family:'Helvetica Neue',Arial,sans-serif;
     font-size:13px;
-    color:#f5fbfd;
-    opacity:0.8;
-    text-shadow:0 2px 12px rgba(0,0,0,0.4);
+    color:#fffdf5;
+    opacity:0.85;
+    text-shadow:0 2px 12px rgba(20,25,10,0.6);
   }
 
-  /* ---------- SECTIONS (translucent panels over the fixed scene) ---------- */
+  /* ---------- SECTIONS: no panel, text floats on the scene ---------- */
   section{
     position:relative;
     max-width:820px;
     margin:0 auto;
     padding:70px 44px;
-    background:rgba(251,247,240,0.72);
-    backdrop-filter:blur(3px) saturate(1.1);
-    -webkit-backdrop-filter:blur(3px) saturate(1.1);
   }
   .section-label{
     font-family:'Helvetica Neue',Arial,sans-serif;
     font-size:14px;
-    color:#0e7a92;
+    color:var(--gold);
     margin-bottom:10px;
+    text-shadow:0 1px 10px rgba(20,25,10,0.6);
   }
   .section-title{
     font-size:clamp(28px,4vw,40px);
@@ -231,37 +252,37 @@
     grid-template-columns:130px 1fr;
     gap:24px;
     padding:26px 0;
-    border-top:1px solid rgba(42,33,24,0.12);
+    border-top:1px solid rgba(255,255,255,0.3);
   }
-  .exp-row:last-child{border-bottom:1px solid rgba(42,33,24,0.12);}
+  .exp-row:last-child{border-bottom:1px solid rgba(255,255,255,0.3);}
   .exp-years{
     font-family:'Helvetica Neue',Arial,sans-serif;
     font-size:14px;
-    color:#5a6a6e;
+    color:#f3f0e4;
     padding-top:3px;
   }
   .exp-row h3{font-size:20px; margin-bottom:6px;}
-  .exp-row p{font-size:15px; line-height:1.55; color:#2f3a3c; max-width:60ch;}
+  .exp-row p{font-size:15px; line-height:1.55; color:#fdf8ef; max-width:60ch;}
 
   .grid-3{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:32px;
   }
-  .skill-card h3{font-size:16px; margin-bottom:8px;}
-  .skill-card p{font-size:14px; color:#42504f; line-height:1.5;}
+  .skill-card h3{font-size:16px; margin-bottom:8px; text-shadow:0 1px 10px rgba(20,25,10,0.6);}
+  .skill-card p{font-size:14px; color:#fdf8ef; line-height:1.5;}
 
   .project{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:20px;
     padding:28px 0;
-    border-top:1px solid rgba(42,33,24,0.12);
+    border-top:1px solid rgba(255,255,255,0.3);
   }
-  .project:last-child{border-bottom:1px solid rgba(42,33,24,0.12);}
+  .project:last-child{border-bottom:1px solid rgba(255,255,255,0.3);}
   .project h3{font-size:19px; margin-bottom:8px;}
-  .project p{font-size:14.5px; color:#2f3a3c; line-height:1.55;}
-  .project a{font-size:13.5px; color:#0e7a92; font-family:'Helvetica Neue',Arial,sans-serif;}
+  .project p{font-size:14.5px; color:#fdf8ef; line-height:1.55;}
+  .project a{font-size:13.5px; color:var(--gold); font-family:'Helvetica Neue',Arial,sans-serif;}
 
   .data-table{
     width:100%;
@@ -275,14 +296,14 @@
     font-size:12px;
     letter-spacing:0.04em;
     text-transform:uppercase;
-    color:#0e7a92;
+    color:var(--gold);
     padding:10px 14px 10px 0;
-    border-bottom:1px solid rgba(42,33,24,0.25);
+    border-bottom:1px solid rgba(255,255,255,0.35);
   }
   .data-table td{
     padding:11px 14px 11px 0;
-    border-bottom:1px solid rgba(42,33,24,0.1);
-    color:#2f3a3c;
+    border-bottom:1px solid rgba(255,255,255,0.18);
+    color:#fdf8ef;
   }
   .subhead{
     font-size:21px;
@@ -290,7 +311,7 @@
     margin-bottom:14px;
   }
   .assumption-note{
-    font-size:13px; line-height:1.6; color:#5a6a6e; max-width:68ch; margin-top:10px; font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:13px; line-height:1.6; color:#f0ead8; max-width:68ch; margin-top:10px; font-family:'Helvetica Neue',Arial,sans-serif;
   }
 
   .contact-block{
@@ -307,12 +328,10 @@
     padding:30px 44px 50px;
     font-family:'Helvetica Neue',Arial,sans-serif;
     font-size:13px;
-    color:#2f3a3c;
+    color:#fdf8ef;
+    text-shadow:0 1px 10px rgba(20,25,10,0.6);
     max-width:820px;
     margin:0 auto;
-    background:rgba(251,247,240,0.72);
-    backdrop-filter:blur(3px);
-    -webkit-backdrop-filter:blur(3px);
   }
 
   @media (max-width:680px){
@@ -324,9 +343,11 @@
   }
 
   @media (prefers-reduced-motion: reduce){
-    .fish, .mote, .light-rays, .kelp{animation:none !important;}
+    .cloud, .bird, .leaf, .tree, .blade, .sun{animation:none !important;}
   }
 </style>
+</head>
+<body>
 
 <nav>
   <a href="index.html#approach">Approach</a>
@@ -334,49 +355,74 @@
   <a href="case-study.html">Case Study</a>
   <a href="index.html#experience">Experience</a>
   <a href="index.html#skills">Skills</a>
-  <a href="index.html#projects">Projects</a>
   <a href="index.html#contact">Contact</a>
 </nav>
+
 <div id="scene">
-  <div class="water-shallow"></div>
-  <div class="water-deep"></div>
-  <div class="light-rays"></div>
-  <div class="particles" id="particles"></div>
+  <div class="sky"></div>
+  <div class="sun"></div>
 
-  <!-- Fish spread across the FULL height so motion is visible behind every section -->
-  <div class="fish" style="top:8%; width:46px; height:26px; animation-duration:26s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
-  <div class="fish pale" style="top:16%; width:34px; height:20px; animation-duration:34s; animation-delay:-6s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
-  <div class="fish" style="top:27%; width:52px; height:30px; animation-duration:22s; animation-delay:-12s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
-  <div class="fish dark" style="top:38%; width:38px; height:22px; animation-duration:30s; animation-delay:-3s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
-  <div class="fish pale" style="top:48%; width:44px; height:26px; animation-duration:28s; animation-delay:-18s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
-  <div class="fish" style="top:58%; width:30px; height:18px; animation-duration:24s; animation-delay:-9s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
-  <div class="fish dark" style="top:68%; width:50px; height:29px; animation-duration:33s; animation-delay:-21s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
-  <div class="fish" style="top:78%; width:40px; height:23px; animation-duration:27s; animation-delay:-15s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
-  <div class="fish dark" style="top:87%; width:34px; height:20px; animation-duration:31s; animation-delay:-24s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
-  <div class="fish pale" style="top:94%; width:26px; height:15px; animation-duration:20s; animation-delay:-4s;"><svg viewBox="0 0 60 34"><path d="M2,17 C10,4 34,4 44,17 C34,30 10,30 2,17 Z M44,17 L58,8 L52,17 L58,26 Z"/></svg></div>
+  <div class="cloud" style="top:12%; left:10%; width:140px; height:36px; animation-duration:70s;"></div>
+  <div class="cloud" style="top:20%; left:50%; width:100px; height:28px; animation-duration:90s; animation-delay:-30s;"></div>
+  <div class="cloud" style="top:8%; left:30%; width:170px; height:42px; animation-duration:110s; animation-delay:-60s;"></div>
 
-  <svg class="kelp" style="left:5%; width:60px; height:180px; animation-duration:6s;" viewBox="0 0 60 180"><path d="M30,180 C10,150 45,120 20,90 C0,65 40,40 25,0 L35,0 C48,40 12,65 32,90 C52,120 22,150 40,180 Z"/></svg>
-  <svg class="kelp" style="left:11%; width:36px; height:110px; animation-duration:5s; animation-delay:-2s;" viewBox="0 0 60 180"><path d="M30,180 C10,150 45,120 20,90 C0,65 40,40 25,0 L35,0 C48,40 12,65 32,90 C52,120 22,150 40,180 Z"/></svg>
-  <svg class="kelp" style="right:7%; width:50px; height:150px; animation-duration:7s; animation-delay:-4s;" viewBox="0 0 60 180"><path d="M30,180 C10,150 45,120 20,90 C0,65 40,40 25,0 L35,0 C48,40 12,65 32,90 C52,120 22,150 40,180 Z"/></svg>
+  <div class="birds">
+    <div class="bird" style="top:22%; animation-duration:30s;"><svg viewBox="0 0 30 12"><path d="M0,9 Q7,0 15,8 Q23,0 30,9"/></svg></div>
+    <div class="bird" style="top:26%; animation-duration:36s; animation-delay:-10s;"><svg viewBox="0 0 30 12"><path d="M0,9 Q7,0 15,8 Q23,0 30,9"/></svg></div>
+    <div class="bird" style="top:18%; animation-duration:42s; animation-delay:-22s;"><svg viewBox="0 0 30 12"><path d="M0,9 Q7,0 15,8 Q23,0 30,9"/></svg></div>
+  </div>
 
-  <svg class="seabed" viewBox="0 0 1200 120" preserveAspectRatio="none">
-    <path d="M0,60 C200,30 400,80 620,50 C860,20 1040,70 1200,45 L1200,120 L0,120 Z"/>
+  <svg class="hill hill-far" viewBox="0 0 1200 400" preserveAspectRatio="none">
+    <path d="M0,260 C220,190 380,280 620,220 C860,170 1040,260 1200,210 L1200,400 L0,400 Z"/>
   </svg>
+  <svg class="hill hill-mid" viewBox="0 0 1200 300" preserveAspectRatio="none">
+    <path d="M0,180 C200,110 380,200 620,150 C860,100 1040,190 1200,140 L1200,300 L0,300 Z"/>
+  </svg>
+
+  <svg class="tree" style="left:8%; width:70px; height:140px; animation-duration:5s;" viewBox="0 0 70 140">
+    <rect class="trunk" x="31" y="90" width="8" height="50"/>
+    <circle class="leaves" cx="35" cy="55" r="40"/>
+  </svg>
+  <svg class="tree" style="left:16%; width:46px; height:95px; animation-duration:4.2s; animation-delay:-1.5s;" viewBox="0 0 70 140">
+    <rect class="trunk" x="31" y="90" width="8" height="50"/>
+    <circle class="leaves" cx="35" cy="55" r="40"/>
+  </svg>
+  <svg class="tree" style="right:10%; width:60px; height:120px; animation-duration:4.8s; animation-delay:-2.5s;" viewBox="0 0 70 140">
+    <rect class="trunk" x="31" y="90" width="8" height="50"/>
+    <circle class="leaves" cx="35" cy="55" r="40"/>
+  </svg>
+
+  <svg class="hill hill-near" viewBox="0 0 1200 140" preserveAspectRatio="none">
+    <path d="M0,90 C300,40 520,110 760,70 C960,40 1100,100 1200,70 L1200,140 L0,140 Z"/>
+  </svg>
+
+  <div class="grass-row">
+    <div class="blade" style="left:3%; height:22px; animation-duration:2.2s;"></div>
+    <div class="blade" style="left:6%; height:16px; animation-duration:1.8s; animation-delay:-0.4s;"></div>
+    <div class="blade" style="left:22%; height:20px; animation-duration:2.4s; animation-delay:-0.8s;"></div>
+    <div class="blade" style="left:40%; height:18px; animation-duration:2.0s; animation-delay:-1.2s;"></div>
+    <div class="blade" style="left:58%; height:24px; animation-duration:2.6s; animation-delay:-0.6s;"></div>
+    <div class="blade" style="left:74%; height:17px; animation-duration:1.9s; animation-delay:-1.0s;"></div>
+    <div class="blade" style="left:88%; height:21px; animation-duration:2.3s; animation-delay:-1.6s;"></div>
+    <div class="blade" style="left:95%; height:15px; animation-duration:2.1s; animation-delay:-0.3s;"></div>
+  </div>
+
+  <div class="particles" id="particles"></div>
 </div>
 
 <div style="height:16vh;"></div>
 <div style="max-width:820px; margin:0 auto; padding:0 44px;">
-  <a href="index.html" style="color:#fff8ec; font-family:'Helvetica Neue',Arial,sans-serif; font-size:14px; text-shadow:0 2px 10px rgba(0,0,0,0.4);">← Back to home</a>
+  <a href="index.html" style="color:#fdf8ef; font-family:'Helvetica Neue',Arial,sans-serif; font-size:14px; text-shadow:0 1px 10px rgba(20,25,10,0.6);">← Back to home</a>
 </div>
 <section id="boost">
   <div class="section-label">Case Study</div>
   <h2 class="section-title">Boost Mobile — subscriber economics and retention.</h2>
 
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch;">
     EchoStar's Boost Mobile is a useful real-world case for marketing-driven unit economics because its public filings show a brand that almost didn't make it. Since EchoStar took over the carrier, it lost roughly 2 million subscribers through 2024 before turning a corner: net additions returned in 2025, with +150K in Q1, +212K in Q2, and +223K in Q3, bringing the base to roughly 7.5 million subscribers. Full-year 2025 wireless churn improved to 2.84%, down from 3.00% in 2024, while ARPU grew 2.3% to $37.41. What follows is my own modeled read on what's driving that turnaround and where the economics could still improve, built from Boost's disclosures plus my own assumptions wherever the company doesn't break out the underlying marketing figures.
   </p>
 
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:20px;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:20px;">
     To estimate acquisition economics, I modeled a blended contribution margin of ~50% on service revenue after network and support costs, and a CAC of roughly $180 per gross add — toward the lower end of typical prepaid carrier CAC, given Boost's growing mix of lower-cost digital-channel sales. At a 2.84% monthly churn rate, that implies an average subscriber lifetime near 35 months. Working through the model: LTV ≈ $37.41 × 50% × 35 months ≈ <strong>$655</strong>; payback period ≈ $180 ÷ ($37.41 × 50%) ≈ <strong>9.6 months</strong>; and acquisition ROI lands near <strong>2.6x</strong> (LTV:CAC). None of those three are disclosed by EchoStar directly — they're my own build from the company's reported ARPU and churn.
   </p>
 
@@ -391,24 +437,24 @@
     <tr><td>36</td><td>2.84%</td><td>312</td></tr>
   </table>
 
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:28px;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:28px;">
     On why churn actually moved: Boost's own disclosures point to two real levers behind the FY2025 improvement — a management-stated shift toward acquiring and retaining "higher quality, long-term subscribers," and continued growth in self-pay digital-channel sales, which likely carry a materially lower CAC than the dealer/retail channel (the company specifically calls out dealer incentive costs as a drag). That matches a broader pattern in prepaid wireless: subsidized or heavily discounted acquisition channels bring in subscribers who churn fast, while self-pay digital subscribers tend to stick around longer. The 2025 subscriber mix shift — including higher government-subsidized growth replacing the lost Affordable Connectivity Program base — suggests Boost is actively managing which segments it leans into, not just chasing gross adds.
   </p>
 
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:20px;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:20px;">
     On where churn "should" be: leading prepaid/MVNO brands have historically run in the 2.0%–2.5% monthly range, which leaves Boost's 2.84% with roughly 30–80 basis points of gap still to close. Because churn compounds against lifetime value, tightening the first 90 days — where the curve above is steepest — would likely be worth more to LTV than any further ARPU increase from here.
   </p>
 
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:20px;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:20px;">
     On ARPU versus churn: 2.3% ARPU growth is a reasonable number in isolation, but on its own it wasn't enough to offset the subscriber losses Boost experienced from 2020 to 2024. It only starts compounding into real revenue growth once churn stabilizes and net adds turn positive together — which is effectively what happened in 2025, when the combination helped drive a 7% year-over-year increase in wireless service revenue.
   </p>
 
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:20px;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:20px;">
     Retention strategies worth pursuing from here: tighten early-tenure churn specifically, since that's where the most value typically leaks before a subscriber's LTV has a chance to develop; keep shifting acquisition mix toward self-pay digital channels, the structurally lower-CAC, higher-quality path based on the company's own commentary; and bundle Sling TV with Boost plans. EchoStar already owns both brands and has precedent for bundling driving retention — its own Dish-Netflix pay-TV bundle measurably improved churn. A Boost+Sling bundle could work the same way on the wireless side: it raises the switching cost of leaving, since a customer would have to replace two services instead of one, and it gives EchoStar a lower-incremental-CAC acquisition channel by cross-selling into its existing Sling base instead of paid marketing.
   </p>
 
   <h3 class="subhead">Quarterly trend: is the growth actually holding up?</h3>
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch;">
     Looking at this quarter by quarter, rather than just the full-year numbers, tells a more honest story than the FY2025 headline does.
   </p>
   <table class="data-table">
@@ -422,21 +468,21 @@
     <tr><td>Q3 2025</td><td>+223K</td><td>7.52M</td><td>$836.2M</td><td>$37.22</td><td>—</td></tr>
     <tr><td>Q4 2025</td><td>-9K</td><td>7.51M</td><td>≈$846.5M</td><td>$37.18</td><td>—</td></tr>
   </table>
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:20px;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:20px;">
     Three straight quarters of accelerating net adds (Q1 → Q3 2025) looked like a genuine turnaround. Then Q4 2025 posted a net loss of 9,000 subscribers and ARPU slipped year-over-year to $37.18 from $37.61 — even with churn still broadly under control. In other words, the "churn is falling and CAC is staying low, but revenue is flat" scenario isn't a hypothetical here. It already happened.
   </p>
 
   <h3 class="subhead">If revenue stalls while churn and CAC look fine, where's it actually leaking?</h3>
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch;">
     If I were sitting in Boost's seat looking at a quarter like Q4 2025, I wouldn't take "churn is low and CAC looks fine" at face value — I'd want to know which of three things is actually happening underneath those headline numbers:
   </p>
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:16px;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:16px;">
     <strong>1. Mix dilution, not demand weakness.</strong> The company's own filings attribute recent net adds partly to higher Government-subsidized subscriber growth. If an increasing share of new subscribers are on lower-ARPU subsidized plans, you can grow subscriber count and lose blended ARPU at the same time — the net-adds number looks healthy while revenue per subscriber quietly erodes. The analysis needed here is an ARPU-by-acquisition-segment breakout, not just a blended company-wide average.
   </p>
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:14px;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:14px;">
     <strong>2. Hidden cost in the device subsidy line, not the marketing line.</strong> EchoStar explicitly cites "deeper wireless device subsidies" as a competitive pressure. A low reported CAC can mask real acquisition cost if it's being paid through subsidized hardware rather than marketing spend — the dollars just moved to a different line item. The fix is a fully-loaded CAC view that folds device subsidy cost into acquisition economics, not just marketing spend per gross add.
   </p>
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:14px;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:14px;">
     <strong>3. Market-share zero-sum pressure.</strong> The U.S. prepaid market is growing only modestly overall, so further growth increasingly has to come from switchers, not new-to-category customers. Taking share from a competitor is harder to do profitably than growing with the category, and it tends to come with pricing concessions that compress ARPU even while churn and CAC both look stable. This calls for win/loss and porting analysis — specifically, where are switchers coming from, and what price or offer moved them.
   </p>
 
@@ -448,23 +494,23 @@
     <tr><td>Boost Mobile</td><td>EchoStar / AT&T network (since Nov. 2025)</td><td>~7.5M</td></tr>
     <tr><td>Visible</td><td>Verizon / Verizon network</td><td>~3M+</td></tr>
   </table>
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:20px;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:20px;">
     Here's a real fact worth flagging, though what I draw from it is my own hypothesis, not something Boost has said: in November 2025, Boost shut down its own 5G radio network and moved subscribers onto AT&T's network under a long-term agreement running through at least 2031. Boost still runs its own 5G core — billing, plans, support — but the physical network underneath is now AT&T's. Cricket is already AT&T's own wholly-owned prepaid brand, running on that same network. My read is that this makes a "strong, reliable network" pitch a weaker differentiator for Boost than it used to be, since it arguably validates Cricket's claim just as much. I could be wrong about how much this matters in practice — brand perception often lags the underlying infrastructure reality by years, and Boost may have reasons (contractual, technical, or simply different coverage maps in different markets) why the two networks don't feel equivalent to a customer even if they're the same physically. It's a hypothesis worth testing, not a settled conclusion.
   </p>
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:16px;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:16px;">
     If that hypothesis holds, one reasonable implication is that marketing dollars are better spent on dimensions where there's a clearer gap to exploit — price positioning, the DISH/Sling bundle (something Cricket and Metro can't replicate), the government-subsidized segment, and dealer footprint — rather than a network-reliability message that may quietly help Cricket as much as Boost. I'd want to see actual brand-perception survey data before committing real budget to this, though; it's a plausible argument, not a proven one.
   </p>
 
   <h3 class="subhead">What it would actually take to get to 15–17 million subscribers</h3>
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch;">
     At ~7.5 million subscribers today, getting to 15–17 million means roughly doubling the base — enough to clear Cricket's ~10 million and meaningfully close the gap on Metro's ~22 million. It's worth being honest about what the current trajectory actually implies: 2025's full-year net add of about 576,000 subscribers, even at the improved pace from the back half of the year, extrapolates to something like 7–8 years to add another 7.5–9.5 million subscribers organically — and that's before accounting for a quarter like Q4 2025, where growth stalled outright. Organic growth at the current run-rate alone does not get Boost there in a competitively relevant timeframe.
   </p>
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:16px;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:16px;">
     Closing that gap faster would realistically require some combination of: (1) a decisive segment push into the value/subsidized tier where Boost already has disclosed momentum, accepting lower ARPU in exchange for share; (2) the Sling/Boost bundle as a structural acquisition channel rather than a side promotion, cross-selling into Sling's existing base at a lower incremental CAC than paid marketing; (3) a pricing move specifically targeted at Cricket, since the two brands now share the same underlying network cost structure, which narrows the case for Cricket's modest price premium; and (4) inorganic growth — acquiring a smaller MVNO or regional prepaid brand — since EchoStar has both the capital history and the M&A appetite to do this, and it's a faster lever than organic net adds alone. Any one of these in isolation probably isn't enough; getting to 15–17 million in a reasonable window likely means doing at least two of them at once.
   </p>
 
   <h3 class="subhead">Showing the actual math: projecting subscribers one year out</h3>
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch;">
     Rather than just asserting a timeline, here's how I'd actually build it — starting from the real Q4 2025 base of 7.51 million subscribers, and two simple inputs each month: how many new subscribers come in (gross adds), and what share of the existing base leaves (churn). Net change = gross adds minus (churn rate × current base). I ran this forward 12 months under three different sets of assumptions, so you can see exactly which input is doing the work.
   </p>
   <table class="data-table">
@@ -473,12 +519,12 @@
     <tr><td>Base</td><td>230K</td><td>2.84% (actual)</td><td>7.60M</td><td>7.68M</td><td>~8.10M</td></tr>
     <tr><td>Bull</td><td>320K</td><td>2.50%</td><td>8.26M</td><td>8.90M</td><td>~12.80M</td></tr>
   </table>
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:20px;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:20px;">
     The honest takeaway: even the bull case — meaningfully higher gross adds and better churn than Boost has actually achieved in any recent quarter — only reaches about 8.9 million in a year, and its long-run equilibrium of 12.8 million still falls short of 15–17 million. Getting there isn't a matter of running the current playbook a little harder; it requires changing the inputs themselves (higher gross adds, lower churn, or both) by more than any single quarter of 2025 has shown so far. I could be wrong about how achievable a step-change like that is — I don't have visibility into Boost's internal roadmap — but the arithmetic is what it is.
   </p>
 
   <h3 class="subhead">Where the assumptions bend: CAC and churn sensitivity</h3>
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch;">
     The $655 LTV and 2.6x ROI figure from earlier depend entirely on a $180 CAC and 2.84% churn holding steady. Neither necessarily will, so here's how the picture changes as each one moves:
   </p>
   <table class="data-table">
@@ -495,61 +541,54 @@
     <tr><td>3.20%</td><td>31 months</td><td>$585</td><td>2.3x</td></tr>
     <tr><td>3.50%</td><td>29 months</td><td>$535</td><td>2.0x</td></tr>
   </table>
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:16px;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:16px;">
     One plain-language point worth separating out: churn mainly affects LTV and ROI, not the payback period — payback is really just CAC divided by monthly margin, so it barely moves no matter what churn does. CAC is the lever that moves payback. That matters here because the $180 CAC I used is based on Boost's <em>recent, relatively easy</em> subscribers — price-sensitive switchers and the growing self-pay digital channel. The next subscriber, especially one happily sitting with Cricket or Metro already, probably costs more to win — likely requiring a bigger device subsidy or promo. That's "marginal CAC," and it's probably closer to the $230–$280 rows above than the $180 base case once Boost is actively trying to take share rather than just capture easy switchers. I don't have a disclosed figure to confirm this — it's a reasonable assumption based on how acquisition costs typically behave as a market matures, not a certainty.
   </p>
 
   <h3 class="subhead">Where this might actually be falling short, and simple fixes</h3>
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch;">
     Keeping this part simple on purpose — four plain hypotheses, each with one straightforward fix, rather than a bigger framework:
   </p>
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:14px;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:14px;">
     <strong>1. The network pitch may not land.</strong> If the AT&T-network overlap with Cricket is real in customers' minds, leading with "reliable network" wastes a message. Fix: lead with price and the Sling bundle instead.
   </p>
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:10px;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:10px;">
     <strong>2. The dealer channel may be bringing in the wrong customers.</strong> Dealer-driven subscribers appear to churn faster and cost more. Fix: keep pushing sign-ups toward the self-pay digital channel, even if growth looks slower in the short term.
   </p>
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:10px;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:10px;">
     <strong>3. Boost probably can't out-subsidize AT&T's own brand.</strong> Cricket's parent can likely always match a device-discount war. Fix: compete on something Cricket structurally can't copy — the Sling/DISH bundle — rather than subsidy depth.
   </p>
-  <p style="font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:10px;">
+  <p style="font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:10px;">
     <strong>4. Most of the value is probably leaking in the first 90 days.</strong> That's where the churn curve modeled earlier is steepest. Fix: a cheap onboarding touchpoint — a welcome text, a simple first-bill explainer — targets exactly that window, for a fraction of CAC.
   </p>
 
+
 </section>
 
-<footer>© 2026 Matt Ellison</footer>
-<script>
-  // rising particles/bubbles, spread across the full page height
-  const field = document.getElementById('particles');
-  for(let i=0;i<50;i++){
-    const m = document.createElement('div');
-    m.className = 'mote' + (Math.random() > 0.6 ? ' glow' : '');
-    m.style.left = Math.random()*100+'%';
-    m.style.bottom = (Math.random()*100)+'%';
-    const dur = 8 + Math.random()*14;
-    m.style.animationDuration = dur+'s';
-    m.style.animationDelay = (Math.random()*dur)+'s';
-    field.appendChild(m);
-  }
 
-  // scroll-driven shallow-to-deep progress
-  const root = document.documentElement;
-  function updateScrollProgress(){
-    const scrollable = document.body.scrollHeight - window.innerHeight;
-    const fraction = scrollable > 0 ? Math.min(Math.max(window.scrollY / scrollable, 0), 1) : 0;
-    root.style.setProperty('--sp', fraction.toFixed(4));
+<footer>© 2026 Matt Ellison</footer>
+
+<script>
+  // drifting leaves, spread across the full page height
+  const field = document.getElementById('particles');
+  for(let i=0;i<35;i++){
+    const l = document.createElement('div');
+    l.className = 'leaf';
+    l.style.left = Math.random()*100+'%';
+    l.style.top = (Math.random()*-100)+'%';
+    const dur = 10 + Math.random()*16;
+    l.style.animationDuration = dur+'s';
+    l.style.animationDelay = (Math.random()*dur)+'s';
+    if(Math.random() > 0.5){ l.style.background = '#c97a3a'; }
+    field.appendChild(l);
   }
-  window.addEventListener('scroll', updateScrollProgress, { passive: true });
-  window.addEventListener('resize', updateScrollProgress);
-  updateScrollProgress();
 
   // Load any sections added through the /admin editor
   fetch('/content/custom-sections.json')
     .then(r => r.ok ? r.json() : {sections:[]})
     .then(data => {
       const container = document.getElementById('custom-sections');
-      if (!data || !Array.isArray(data.sections)) return;
+      if (!container || !data || !Array.isArray(data.sections)) return;
       data.sections.forEach(sec => {
         const section = document.createElement('section');
         const label = document.createElement('div');
@@ -563,7 +602,7 @@
         (sec.body || '').split('\n\n').forEach(paraText => {
           if (!paraText.trim()) return;
           const p = document.createElement('p');
-          p.style.cssText = "font-size:16px; line-height:1.7; color:#2f3a3c; max-width:68ch; margin-top:16px;";
+          p.style.cssText = "font-size:16px; line-height:1.7; color:#fdf8ef; max-width:68ch; margin-top:16px;";
           p.textContent = paraText;
           section.appendChild(p);
         });
@@ -583,4 +622,6 @@
     });
   }
 </script>
-</body></html>
+
+</body>
+</html>
